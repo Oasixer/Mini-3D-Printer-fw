@@ -1,4 +1,4 @@
-// by Zachariah Mears
+// by Zachariah, Kaelan, Lyndon, Daddy Parth
 const int velocity = 25; //mm/s 200/8
 const float encoderCountPermm = 180/PI*4;
 const float TOLERANCE = 2;
@@ -6,6 +6,7 @@ int motorX = motorA, motorY = motorB, motorZ = motorC, motorE = motorD;
 
 
 float motorPower (float velocity); //func prototype
+/* DEPRECATED MOVEXY FUNCTION (UPDATED ONE BELOW)
 void moveXY (float xTarget, float yTarget)
 {
 	float deltaX = xTarget - nMotorEncoder[motorX];
@@ -26,6 +27,7 @@ void moveXY (float xTarget, float yTarget)
 		}
 	}
 }
+*/
 
 //kaelans version of moveXY
 //changes: 1) take xTarget and yTarget in mm
@@ -51,7 +53,7 @@ void moveXYMM (float xTarget, float yTarget, bool rel)
 	yCur-=yInit;
 
 	float deltaX = xTarget-xCur;
-	float deltaY = yTarget-yCur; //fix indeterminate below
+	float deltaY = yTarget-yCur; //AHHHH remember to fix indeterminate case below when deltaX or deltaY==0	
 	motor[motorX] = motorPower((abs(deltaX)/deltaX)(velocity*(deltaX/sqrt(deltaX*deltaX+deltaY*deltaY))));
 	motor[motorY] = motorPower((abs(deltaY)/deltaY)(velocity*(deltaY/sqrt(deltaX*deltaX+deltaY*deltaY))));
 	while (abs(xTarget - xCur)>TOLERANCE || abs(yTarget - yCur)>TOLERANCE){
@@ -87,9 +89,6 @@ task main ()
 		}
 	}
 }
-
-
-//NOOOOOOOOOOOOOOOOOOOOOOOOOT DONE NOOOOOOOOOOOT DONE NOT DONE NOT DONE NOT DONE
 
 //cubes[][][] stores all the cubes in a cartesian plane. 
 //dimension 1=x axis, dimension 2=y axis, dimension 3=z axis
@@ -164,7 +163,6 @@ void zero(){
 	//add later
 }
 
-//this is done
 void test (){ //makes a 5cm horizontal line and a 5cm line at a 45 degree angle
 	moveXYMM(0,5,true);
 	moveXYMM(5,5,true);
