@@ -35,7 +35,7 @@ void moveXY (float xTarget, float yTarget)
 //this constant needs to be filled in - its the ratio of encoder counts to millimeters
 const float ENCTOMM=24/360;
 const float MMTOENC=15;
-int maxLayer=0;
+int maxLayer;
 
 void moveXYMM (float xTarget, float yTarget, bool rel)
 {	
@@ -72,12 +72,13 @@ void moveXYMM (float xTarget, float yTarget, bool rel)
 
 task main ()
 {
-	int cubes[10][10][300]=scanPaper();
+	maxLayer=0;
+	int cubes[5][5][210]=scanPaper();
 	boolean printing=false; //temp, use a button press or something
 	while (printing){
 		for (int lay=0; lay<maxLayer+1; lay++){ //loop through layers
-			for (int x=0; x<15; x++){ //loop through columns (x)
-				for (int y=0; y<15; y++){ //loop h
+			for (int x=0; x<5; x++){ //loop through columns (x)
+				for (int y=0; y<5; y++){ //loop h
 					if (cubes[layer][x][y]){
 						printSquare((float)x*15,(float)y*15);
 					}
@@ -87,13 +88,25 @@ task main ()
 	}
 }
 
+
+//NOOOOOOOOOOOOOOOOOOOOOOOOOT DONE NOOOOOOOOOOOT DONE NOT DONE NOT DONE NOT DONE
+
 //cubes[][][] stores all the cubes in a cartesian plane. 
 //dimension 1=x axis, dimension 2=y axis, dimension 3=z axis
 //value = 1 if it needs to be printed, 0 if not. (possibly add like 2 for things that have been printed already??)
 int scanPaper(){
-	int cubes[10][10][300]={0};
-	//add later
-	//remember to assign maxLayer
+	int cubes[5][5][210]={0};
+	for (int x=0;x<6;x++){
+		for(int y=0;y<6;y++){
+			moveXYMM(x*15,y*15,false);
+			int height=scanPaper();
+			if (height>maxLayer)
+				maxLayer=height;
+			for (int lay=0;lay<height;lay++)
+				cubes[x][y][lay]=1;
+		}
+	}
+
 	maxLayer=0; //temp
 	for (int i=0;i<31;i++){
 		cubes[0][0][i]=1; //TEST CASE MATRIX: JUST 2 CUBES at (0,0) and (0,1)
@@ -101,7 +114,11 @@ int scanPaper(){
 	}
 }
 
+int scanColour(){
+	//NOT DONEEEEEEEEEEEEEEEEEEEEEEEEEEE
+}
 
+//done
 void printSquare (float leftx, float boty){
 	moveXYMM(leftx,boty,false);
 	moveXYMM(leftx+14,boty+0,false);
@@ -135,14 +152,18 @@ void printSquare (float leftx, float boty){
 	moveXYMM(leftx+12,boty+12,false);
 }
 
+//NOT DONE NOT DONE NOT DONE
 void zero(){
 	//add later
 }
 
+//this is done
 void test (){ //makes a 5cm horizontal line and a 5cm line at a 45 degree angle
-	moveXYMM()
+	moveXYMM(0,5,true);
+	moveXYMM(5,5,true);
 }
 
+//this is written but needs testing data to assign values
 float motorPower (float velocity)
 {
 	const float slope = 1, offset = 0, exponent = 1;
