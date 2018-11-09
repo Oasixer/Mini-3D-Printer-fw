@@ -4,6 +4,16 @@ const float encoderCountPermm = 180/PI*4;
 const float TOLERANCE = 2;
 int motorX = motorA, motorY = motorB, motorZ = motorC, motorE = motorD;
 
+struct Vector {
+	float x;
+	float y;
+	float magnitude;
+};
+
+float getMagnitude (struct Vector v)
+{
+	return sqrt(x*x + y*y);
+}
 
 float motorPower (float velocity); //func prototype
 /* DEPRECATED MOVEXY FUNCTION (UPDATED ONE BELOW)
@@ -35,10 +45,17 @@ void moveXY (float xTarget, float yTarget)
 //so that we dont lose track of the total movement of the extruder
 
 //this constant needs to be filled in - its the ratio of encoder counts to millimeters
-const float ENCTOMM=24/360;
+const float ENCTOMMM=24/360;
 const float MMTOENC=15;
 int maxLayer;
 
+// function prototypes
+void moveXYMM (float xTarget, float yTarget, bool rel);
+int scanPaper();
+int scanColour();
+void moveServo(bool input);
+void test();
+float motorPower(float velocity);
 
 void moveXYMM (float xTarget, float yTarget, bool rel)
 {
@@ -55,11 +72,18 @@ void moveXYMM (float xTarget, float yTarget, bool rel)
 
 	float deltaX = xTarget-xCur;
 	float deltaY = yTarget-yCur; //AHHHH remember to fix indeterminate case below when deltaX or deltaY==0
-	motor[motorX] = motorPower((abs(deltaX)/deltaX)(velocity*(deltaX/sqrt(deltaX*deltaX+deltaY*deltaY))));
-	motor[motorY] = motorPower((abs(deltaY)/deltaY)(velocity*(deltaY/sqrt(deltaX*deltaX+deltaY*deltaY))));
-	while (abs(xTarget - xCur)>TOLERANCE || abs(yTarget - yCur)>TOLERANCE){
-		xCur=nMotorEncoder[motorX]*ENCTOMM-xInit;
-		yCur=nMotorEncoder[motorY]*ENCTOMM-yInit;
+	if (abs(sqrt(deltaX*deltaX + deltaY*deltaY)) > TOLERANCE)
+	{
+		// updated function 11/9/18 - 4:25PM
+		motor[motorX] = motorPower(velocity / sqrt(deltaX*deltaX + deltaY*deltaY) * deltaX);
+		motor[motorY] = motorPower(velocity / sqrt(deltaX*deltaX + deltaY*deltaY) * deltaY);
+	}
+	
+	//motor[motorX] = motorPower((abs(deltaX)/deltaX)*(velocity*(deltaX/sqrt(deltaX*deltaX+deltaY*deltaY))));
+	//motor[motorY] = motorPower((abs(deltaY)/deltaY)*(velocity*(deltaY/sqrt(deltaX*deltaX+deltaY*deltaY))));
+	while (abs(xTarget - xCur) > TOLERANCE || abs(yTarget - yCur) > TOLERANCE){
+		xCur=nMotorEncoder[motorX]*ENCTOMMM-xInit;
+		yCur=nMotorEncoder[motorY]*ENCTOMMM-yInit;
 		if (abs(xTarget - xCur)<TOLERANCE)
 		{
 			motor[motorX] = 0;
