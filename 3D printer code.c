@@ -31,7 +31,7 @@ void moveXY (float xTarget, float yTarget)
 
 //kaelans version of moveXY
 //changes: 1) take xTarget and yTarget in mm
-//2) do all the calculations relative to the starting x and y 
+//2) do all the calculations relative to the starting x and y
 //so that we dont lose track of the total movement of the extruder
 
 //this constant needs to be filled in - its the ratio of encoder counts to millimeters
@@ -39,8 +39,9 @@ const float ENCTOMM=24/360;
 const float MMTOENC=15;
 int maxLayer;
 
+
 void moveXYMM (float xTarget, float yTarget, bool rel)
-{	
+{
 	float xCur=nMotorEncoder[motorX]*ENCTOMM;
 	float yCur=nMotorEncoder[motorY]*ENCTOMM;
 	float xInit=xCur;
@@ -53,7 +54,7 @@ void moveXYMM (float xTarget, float yTarget, bool rel)
 	yCur-=yInit;
 
 	float deltaX = xTarget-xCur;
-	float deltaY = yTarget-yCur; //AHHHH remember to fix indeterminate case below when deltaX or deltaY==0	
+	float deltaY = yTarget-yCur; //AHHHH remember to fix indeterminate case below when deltaX or deltaY==0
 	motor[motorX] = motorPower((abs(deltaX)/deltaX)(velocity*(deltaX/sqrt(deltaX*deltaX+deltaY*deltaY))));
 	motor[motorY] = motorPower((abs(deltaY)/deltaY)(velocity*(deltaY/sqrt(deltaX*deltaX+deltaY*deltaY))));
 	while (abs(xTarget - xCur)>TOLERANCE || abs(yTarget - yCur)>TOLERANCE){
@@ -90,7 +91,7 @@ task main ()
 	}
 }
 
-//cubes[][][] stores all the cubes in a cartesian plane. 
+//cubes[][][] stores all the cubes in a cartesian plane.
 //dimension 1=x axis, dimension 2=y axis, dimension 3=z axis
 //value = 1 if it needs to be printed, 0 if not. (possibly add like 2 for things that have been printed already??)
 int scanPaper(){
@@ -161,6 +162,15 @@ void printSquare (float leftx, float boty){
 //NOT DONE NOT DONE NOT DONE
 void zero(){
 	//add later
+}
+
+void moveServo (bool input){
+	if (input){
+		setServoPosition(S4, 1, 25);// extrude on
+	}
+	else {
+		setServoPosition(S4, 1, 0);//extrude off
+	}
 }
 
 void test (){ //makes a 5cm horizontal line and a 5cm line at a 45 degree angle
