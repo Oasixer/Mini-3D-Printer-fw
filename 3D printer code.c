@@ -106,12 +106,6 @@ int scanPaper(){
 				cubes[x][y][lay]=1;
 		}
 	}
-
-	maxLayer=0; //temp
-	for (int i=0;i<31;i++){
-		cubes[0][0][i]=1; //TEST CASE MATRIX: JUST 2 CUBES at (0,0) and (0,1)
-		cubes[0][1][i]=1; 
-	}
 }
 
 int scanColour(){
