@@ -12,7 +12,7 @@ int step=0;
 //GLOBAL VARIABLES ABOVE HERE
 
 //PROTOTYPES
-void moveXYMM (float xTarget, float yTarget, bool rel);
+void moveXYMM (float xTarget, float yTarget);
 int scanPaper();
 int scanColour();
 void moveServo(bool input);
@@ -25,12 +25,12 @@ struct Vector {
 	float y;
 	float magnitude;
 };
-
+/*
 float getMagnitude (struct Vector v)
 {
 	return sqrt(x*x + y*y);
 }
-
+*/
 
 
 
@@ -68,15 +68,24 @@ void moveXYMM (float xTarget, float yTarget)
 	deY=deltaY;
 	//displayString(0,"dx=%f")
 	moX=motor[motorX] = motorPower((velocity*(deltaX/sqrt(deltaX*deltaX+deltaY*deltaY))));
+	moX=40;
+	if (deltaX<0)
+		moX*=-1;
+
+	motor[motorX]=moX;
 	moY=motor[motorY] = motorPower((velocity*(deltaY/sqrt(deltaX*deltaX+deltaY*deltaY))));
+	moY=40;
+		if (deltaY<0)
+		moY*=-1;
 	motor[motorY]=moY;
+
 
 
 	while (abs(xTarget - xCur)>TOLERANCE || abs(yTarget - yCur)>TOLERANCE){
 		xEn=nMotorEncoder[motorX];
 		yEn= nMotorEncoder[motorY];
-		xCur=nMotorEncoder[motorX]*ENCTOMM-xInit;
-		yCur=nMotorEncoder[motorY]*ENCTOMM-yInit;
+		xCur=nMotorEncoder[motorX]*ENCTOMM;
+		yCur=nMotorEncoder[motorY]*ENCTOMM;
 		xCu=xCur;
 		yCu=yCur;
 		if (abs(xTarget - xCur)<TOLERANCE)
@@ -118,7 +127,7 @@ int scanPaper(){
 	int cubes[5][5];
 	for (int x=0;x<6;x++){
 		for(int y=0;y<6;y++){
-			moveXYMM(x*15,y*15,false);
+			moveXYMM(x*15,y*15);
 				int height=scanPaper();
 			if (height>maxLayer)
 				maxLayer=height;
@@ -131,36 +140,36 @@ int scanPaper(){
 
 //done
 void printSquare (float leftx, float boty){
-	moveXYMM(leftx,boty,false);
-	moveXYMM(leftx+14,boty+0,false);
-	moveXYMM(leftx+14,boty+14,false);
-	moveXYMM(leftx,boty+14,false);
-	moveXYMM(leftx,boty+1,false);
-	moveXYMM(leftx+13,boty+1,false);
-	moveXYMM(leftx+13,boty+13,false);
-	moveXYMM(leftx+1,boty+13,false);
-	moveXYMM(leftx+1,boty+2,false);
-	moveXYMM(leftx+12,boty+2,false);
-	moveXYMM(leftx+12,boty+3,false);
-	moveXYMM(leftx+2,boty+3,false);
-	moveXYMM(leftx+2,boty+4,false);
-	moveXYMM(leftx+12,boty+4,false);
-	moveXYMM(leftx+12,boty+5,false);
-	moveXYMM(leftx+2,boty+5,false);
-	moveXYMM(leftx+2,boty+6,false);
-	moveXYMM(leftx+12,boty+6,false);
-	moveXYMM(leftx+12,boty+7,false);
-	moveXYMM(leftx+2,boty+7,false);
-	moveXYMM(leftx+2,boty+8,false);
-	moveXYMM(leftx+12,boty+8,false);
-	moveXYMM(leftx+12,boty+9,false);
-	moveXYMM(leftx+2,boty+9,false);
-	moveXYMM(leftx+2,boty+10,false);
-	moveXYMM(leftx+12,boty+10,false);
-	moveXYMM(leftx+12,boty+11,false);
-	moveXYMM(leftx+2,boty+11,false);
-	moveXYMM(leftx+2,boty+12,false);
-	moveXYMM(leftx+12,boty+12,false);
+	moveXYMM(left x,boty);
+	moveXYMM(leftx+14,boty+0);
+	moveXYMM(leftx+14,boty+14);
+	moveXYMM(leftx,boty+14);
+	moveXYMM(leftx,boty+1);
+	moveXYMM(leftx+13,boty+1);
+	moveXYMM(leftx+13,boty+13);
+	moveXYMM(leftx+1,boty+13);
+	moveXYMM(leftx+1,boty+2);
+	moveXYMM(leftx+12,boty+2);
+	moveXYMM(leftx+12,boty+3);
+	moveXYMM(leftx+2,boty+3);
+	moveXYMM(leftx+2,boty+4);
+	moveXYMM(leftx+12,boty+4);
+	moveXYMM(leftx+12,boty+5);
+	moveXYMM(leftx+2,boty+5);
+	moveXYMM(leftx+2,boty+6);
+	moveXYMM(leftx+12,boty+6);
+	moveXYMM(leftx+12,boty+7);
+	moveXYMM(leftx+2,boty+7);
+	moveXYMM(leftx+2,boty+8);
+	moveXYMM(leftx+12,boty+8);
+	moveXYMM(leftx+12,boty+9);
+	moveXYMM(leftx+2,boty+9);
+	moveXYMM(leftx+2,boty+10);
+	moveXYMM(leftx+12,boty+10);
+	moveXYMM(leftx+12,boty+11);
+	moveXYMM(leftx+2,boty+11);
+	moveXYMM(leftx+2,boty+12);
+	moveXYMM(leftx+12,boty+12);
 }
 
 //NOT DONE NOT DONE NOT DONE
@@ -184,9 +193,9 @@ void test (){ //makes a 5cm horizontal line and a 5cm line at a 45 degree angle
 	nMotorEncoder[motorY]=0;
 	wait1Msec(50);
 	step=0;
-	moveXYMM(0,5,true);
+	moveXYMM(0,5);
 	step=1;
-	moveXYMM(5,5,true);
+	moveXYMM(5,10);
 	step=2;
 }
 
@@ -212,6 +221,6 @@ task main ()
 	}
 	*/
 	maxLayer=2;
-	test();
+	printSquare(1,1);
 
 }
