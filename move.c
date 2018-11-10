@@ -1,4 +1,5 @@
 #include<global.c>
+#include<EV3Servo-lib-UW.c>
 
 float motorPower (float velocity)
 {
@@ -24,10 +25,13 @@ void moveXY (float xTarget, float yTarget)
 	float deltaY = yTarget-yCur; //AHHHH remember to fix indeterminate case below when deltaX or deltaY==0
 	deY=deltaY;
 	if (abs(deltaX)> TOLERANCE)
-		moX= motor[motorX] = motorPower((velocity* deltaX /sqrt(deltaX*deltaX+deltaY*deltaY))));
+	{
+		moX = motor[motorX] = motorPower(velocity* deltaX /sqrt(deltaX*deltaX+deltaY*deltaY));
+	}
 	if (abs(deltaY)> TOLERANCE)
-		moY= motor[motorY] = motorPower((velocity*deltaY/sqrt(deltaX*deltaX+deltaY*deltaY))));
-
+	{
+		moY= motor[motorY] = motorPower(velocity*deltaY/sqrt(deltaX*deltaX+deltaY*deltaY));
+	}
 	while (abs(xTarget - xCur) > TOLERANCE || abs(yTarget - yCur) > TOLERANCE){
 		xCur=nMotorEncoder[motorX]*ENCTOMM;
 		yCur=nMotorEncoder[motorY]*ENCTOMM;
@@ -44,7 +48,7 @@ void moveXY (float xTarget, float yTarget)
 	motor[motorY]=0;
 }
 
-void moveZ (zTarget)
+void moveZ (float zTarget)
 {
 	float zCur = nMotorEncoder[motorZ1]*ENCTOMM;
 	int direction = 1;
