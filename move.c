@@ -26,11 +26,11 @@ void moveXY (float xTarget, float yTarget)
 	deY=deltaY;
 	if (abs(deltaX)> TOLERANCE)
 	{
-		moX = motor[motorX] = motorPower(velocity* deltaX /sqrt(deltaX*deltaX+deltaY*deltaY));
+		moX = motor[motorX] = motorPower(VELOCITY* deltaX /sqrt(deltaX*deltaX+deltaY*deltaY));
 	}
 	if (abs(deltaY)> TOLERANCE)
 	{
-		moY= motor[motorY] = motorPower(velocity*deltaY/sqrt(deltaX*deltaX+deltaY*deltaY));
+		moY= motor[motorY] = motorPower(VELOCITY*deltaY/sqrt(deltaX*deltaX+deltaY*deltaY));
 	}
 	while (abs(xTarget - xCur) > TOLERANCE || abs(yTarget - yCur) > TOLERANCE){
 		xCur=nMotorEncoder[motorX]*ENCTOMM;

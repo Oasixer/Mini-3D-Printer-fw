@@ -32,3 +32,15 @@ void printSquare (float leftx, float boty){
 	moveXY(leftx+2,boty+12);
 	moveXY(leftx+12,boty+12);
 }
+
+void runPrint (int cubes[5][5]){
+	for (int layer=1;layer<MAXLAYER;layer++){
+		for (float x=0;x<5;x++){
+			for (float y=0;y<5;y++){
+				if (cubes[x][y]<=layer)
+					printSquare(x,y);
+			}
+		}
+	}
+
+}
