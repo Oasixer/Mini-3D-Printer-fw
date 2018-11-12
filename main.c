@@ -3,12 +3,14 @@
 #include<move.c>
 #include<start.c>
 #include<print.c>
+#include<buttons.c>
 
 task main ()
 {
+waitForButtonPress();
 zero();
-step=1;//DEBUG
+waitForButtonPress();
 scanPaper();
-step=2;//DEBUG
+waitForButtonPress();
 runPrint();
 }

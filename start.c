@@ -1,8 +1,22 @@
 #include<global.c>
 #include<move.c>
+#include<buttons.c>
 
 void zero(){
-	//add later
+	//zero X
+	moX=-20;
+	motor[motorX]=moX;
+	waitForButtonPress();
+	moX=0;
+	motor[motorX]=moX;
+
+	//zero Y
+	SensorType[S2]=sensorEV3_Touch;
+	SensorMode[S2]=modeEV3Touch_Touch;
+	moY=-50;
+	//wait for sensor
+	moY=0;//UNFINISHED
+	
 }
 
 int scanColour()
