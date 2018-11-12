@@ -29,7 +29,7 @@ void scanPaper(){
 		for(int y=0;y<6;y++){
 			step=1.1;//DEBUG
 			moveXY(x*15-7,y*15-7);
-			step=1.2;//DEBUG
+			step=1.9;//DEBUG
 			cubes[x][y]=scanColour();
 		}
 	}

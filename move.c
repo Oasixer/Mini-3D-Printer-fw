@@ -12,36 +12,46 @@ float motorPower (float velocity)
 
 void moveXY (float xTarget, float yTarget)
 {
-	float xCur=nMotorEncoder[motorX]*ENC_TO_MM;
-	float yCur=nMotorEncoder[motorY]*ENC_TO_MM;
+	xCur=nMotorEncoder[motorX]*ENC_TO_MM;
+	yCur=nMotorEncoder[motorY]*ENC_TO_MM;
 	xTar=xTarget;
 	yTar=yTarget;
-	float deltaX = xTarget-xCur;
-	deX=deltaX;
-	float deltaY = yTarget-yCur; //AHHHH remember to fix indeterminate case below when deltaX or deltaY==0
-	deY=deltaY;
-	if (abs(deltaX)> TOLERANCE)
+	deX = xTar-xCur;
+	deY = yTar-yCur;
+	if (abs(deX)> TOLERANCE)
 	{
-		moX = motor[motorX] = motorPower(VELOCITY* deltaX /sqrt(deltaX*deltaX+deltaY*deltaY));
+		moX = motorPower(VELOCITY* deX /sqrt(deX*deX+deY*deY));
+		step=1.5;//DEBUG
+		if (deX<0)
+			moX*=-1;
+		motor[motorX] = moX;
 	}
-	if (abs(deltaY)> TOLERANCE)
+	if (abs(deY)> TOLERANCE)
 	{
-		moY= motor[motorY] = motorPower(VELOCITY*deltaY/sqrt(deltaX*deltaX+deltaY*deltaY));
+		step=1.5;//DEBUG
+		moY=motorPower(VELOCITY*deY/sqrt(deX*deX+deY*deY));
+		if (deY<0)
+			moY*=-1;
+		motor[motorY] = moY;
 	}
-	while (abs(xTarget - xCur) > TOLERANCE || abs(yTarget - yCur) > TOLERANCE){
+	while (abs(xTar - xCur) > TOLERANCE || abs(yTar - yCur) > TOLERANCE){
 		xCur=nMotorEncoder[motorX]*ENC_TO_MM;
 		yCur=nMotorEncoder[motorY]*ENC_TO_MM;
-		if (abs(xTarget - xCur)<TOLERANCE)
+		if (abs(xTar - xCur)<TOLERANCE)
 		{
 			motor[motorX] = 0;
+			moX=0;
 		}
 		if (abs(yTarget - yCur)<TOLERANCE)
 		{
 			motor[motorY] = 0;
+			moY=0;
 		}
 	}
 	motor[motorX]=0;
+	moX=0;
 	motor[motorY]=0;
+	moY=0;
 }
 
 void moveZ (float zTarget)
