@@ -24,13 +24,13 @@ int scanColour()
 		return values[2];
 }
 
-int scanPaper(){
-	int cubes[5][5];
+void scanPaper(){
 	for (int x=0;x<6;x++){
 		for(int y=0;y<6;y++){
+			step=1.1;//DEBUG
 			moveXY(x*15-7,y*15-7);
+			step=1.2;//DEBUG
 			cubes[x][y]=scanColour();
 		}
 	}
-	return cubes;
 }

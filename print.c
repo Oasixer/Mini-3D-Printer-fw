@@ -1,9 +1,9 @@
-#include<constants.c>
+#include<global.c>
 #include<move.c>
 
 void printSquare (float leftx, float boty){
 	extrude(true);
-	wait1MSec(300);
+	wait1Msec(300);
 	moveXY(leftx,boty);
 	moveXY(leftx+14,boty+0);
 	moveXY(leftx+14,boty+14);
@@ -37,7 +37,7 @@ void printSquare (float leftx, float boty){
 	extrude(false);
 }
 
-void runPrint (int cubes[5][5]){
+void runPrint (){
 	for (int layer=1;layer<MAXLAYER;layer++){
 		for (float x=0;x<5;x++){
 			for (float y=0;y<5;y++){
@@ -47,5 +47,4 @@ void runPrint (int cubes[5][5]){
 		}
 		moveZ(layer*LAYERHEIGHT);
 	}
-
 }
