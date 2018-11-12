@@ -1,5 +1,7 @@
 // RobotC functions
 #include "PCFileIO.c"
+#include <move.c>
+
 void readFile(TFileHandle & fin, string filename){
 	openReadPC(fin, filename);
 	
@@ -14,7 +16,7 @@ void readFile(TFileHandle & fin, string filename){
 		while(readFloatPC(fin, xNext) && readFloatPC(fin, yNext))
 		{
 			// move to next position
-			moveXYMM(xNext-xLast, yNext-yLast, true);
+			moveXY(xNext-xLast, yNext-yLast);
 		}
 		
 		// turn off extruder

@@ -1,6 +1,6 @@
 // velocity finder by Zachariah Mears
 // used to calibrate motorPower function
-#include<constants.c>
+#include<global.c>
 
 int testCases [10] = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
 

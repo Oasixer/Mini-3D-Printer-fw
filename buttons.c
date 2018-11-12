@@ -1,4 +1,4 @@
-#include<globals.c>
+#include<global.c>
 
 void waitForButtonPress(){
 	while (!getButtonPress(buttonEnter)){}
