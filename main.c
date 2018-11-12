@@ -1,14 +1,12 @@
 // by Zachariah, Kaelan, Lyndon, Daddy Parth
-#include<global.c>
+#include<constants.c>
 #include<move.c>
 #include<start.c>
 #include<print.c>
 
-//TASK MAIN
-
 task main ()
 {
 zero();
-int cubes[5][5];
+int cubes[5][5]=scanPaper();
 runPrint(cubes);
 }
