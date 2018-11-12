@@ -1,6 +1,9 @@
 #include<global.c>
+#include<move.c>
 
 void printSquare (float leftx, float boty){
+	extrude(true);
+	wait1MSec(300);
 	moveXY(leftx,boty);
 	moveXY(leftx+14,boty+0);
 	moveXY(leftx+14,boty+14);
@@ -31,6 +34,7 @@ void printSquare (float leftx, float boty){
 	moveXY(leftx+2,boty+11);
 	moveXY(leftx+2,boty+12);
 	moveXY(leftx+12,boty+12);
+	extrude(false);
 }
 
 void runPrint (int cubes[5][5]){
@@ -41,6 +45,7 @@ void runPrint (int cubes[5][5]){
 					printSquare(x,y);
 			}
 		}
+		moveZ(layer);
 	}
 
 }
