@@ -27,11 +27,8 @@ int scanPaper(){
 	int cubes[5][5];
 	for (int x=0;x<6;x++){
 		for(int y=0;y<6;y++){
-			moveXY(x*15,y*15);
-				int height=scanPaper();
-			if (height>maxLayer)
-				maxLayer=height;
-			cubes[x][y]=height;
+			moveXY(x*15-7,y*15-7);
+			cubes[x][y]=scanColour();
 		}
 	}
 	return cubes;
