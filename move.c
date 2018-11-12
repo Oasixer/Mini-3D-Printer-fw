@@ -5,19 +5,15 @@ float motorPower (float velocity)
 {
 	const float slope = 1, offset = 0, exponent = 1;
 	if (velocity < 0)
-	{
-	return -slope*pow(abs(velocity), exponent) + offset;
-	}
+		return -slope*pow(abs(velocity), exponent) + offset;
 	else
-	{
 		return slope*pow(abs(velocity), exponent) + offset;
-	}
 }
 
 void moveXY (float xTarget, float yTarget)
 {
-	float xCur=nMotorEncoder[motorX]*ENCTOMM;
-	float yCur=nMotorEncoder[motorY]*ENCTOMM;
+	float xCur=nMotorEncoder[motorX]*ENC_TO_MM;
+	float yCur=nMotorEncoder[motorY]*ENC_TO_MM;
 	xTar=xTarget;
 	yTar=yTarget;
 	float deltaX = xTarget-xCur;
@@ -33,8 +29,8 @@ void moveXY (float xTarget, float yTarget)
 		moY= motor[motorY] = motorPower(VELOCITY*deltaY/sqrt(deltaX*deltaX+deltaY*deltaY));
 	}
 	while (abs(xTarget - xCur) > TOLERANCE || abs(yTarget - yCur) > TOLERANCE){
-		xCur=nMotorEncoder[motorX]*ENCTOMM;
-		yCur=nMotorEncoder[motorY]*ENCTOMM;
+		xCur=nMotorEncoder[motorX]*ENC_TO_MM;
+		yCur=nMotorEncoder[motorY]*ENC_TO_MM;
 		if (abs(xTarget - xCur)<TOLERANCE)
 		{
 			motor[motorX] = 0;
@@ -50,18 +46,17 @@ void moveXY (float xTarget, float yTarget)
 
 void moveZ (float zTarget)
 {
-	float zCur = nMotorEncoder[motorZ1]*ENCTOMM;
+	float zCur = nMotorEncoder[motorZ1]*ENC_TO_MM;
 	int direction = 1;
 	if (zTarget < zCur)
 		direction = -1;
 	motor[motorZ1] = motor[motorZ2] = 100*direction;
 	while(zTarget > zCur*direction)
 	{
-		zCur = nMotorEncoder[motorZ1]*ENCTOMM;
+		zCur = nMotorEncoder[motorZ1]*ENC_TO_MM;
 	}
 	motor[motorZ1] = motor[motorZ2] = 0;
 }
-
 
 void extrude (bool input)
 {

@@ -45,7 +45,7 @@ void runPrint (int cubes[5][5]){
 					printSquare(x,y);
 			}
 		}
-		moveZ(layer);
+		moveZ(layer*LAYERHEIGHT);
 	}
 
 }
