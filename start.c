@@ -1,4 +1,5 @@
 #include<global.c>
+#include<move.c>
 
 void zero(){
 	//add later

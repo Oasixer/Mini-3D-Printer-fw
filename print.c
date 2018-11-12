@@ -1,4 +1,4 @@
-#include<global.c>
+#include<constants.c>
 #include<move.c>
 
 void printSquare (float leftx, float boty){
