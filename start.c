@@ -2,6 +2,10 @@
 #include<move.c>
 #include<buttons.c>
 
+void configureI2C (tSensors port){ // make sure to call function to set up servo
+	SensorType[port] = sensorI2CCustom9V;
+}
+
 void zeroAxis(tMotor motorAxis, int powerAxis, tSensor touchAxis)
 {
 	// zero x-axis
