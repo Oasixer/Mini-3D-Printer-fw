@@ -1,6 +1,6 @@
 // RobotC functions
 #include "PCFileIO.c"
-#include <move.c>
+#include "move.c"
 
 void readFile(TFileHandle & fin, string filename){
 	openReadPC(fin, filename);

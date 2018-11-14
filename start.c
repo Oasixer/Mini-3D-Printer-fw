@@ -1,6 +1,6 @@
-#include<global.c>
-#include<move.c>
-#include<buttons.c>
+#include "global.c"
+#include "move.c"
+#include "buttons.c"
 
 void configureI2C (tSensors port){ // make sure to call function to set up servo
 	SensorType[port] = sensorI2CCustom9V;
