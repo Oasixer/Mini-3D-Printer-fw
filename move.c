@@ -12,27 +12,18 @@ float motorPower (float velocity)
 
 void moveXY (float xTarget, float yTarget)
 {
-	float xCurrent = nMotorEncoder[motorX] * ENC_TO_MM;
-	float yCurrent = nMotorEncoder[motorY]*ENC_TO_MM;
-	
-	float deltaX = xTarget - xCurrent;
-	float deltaY = yTarget - yCurrent;
-	
-	float deltaV = sqrt(deltaX*deltaX + deltaY*deltaY);
+	xCurrent = nMotorEncoder[motorX]*ENC_TO_MM;
+	yCurrent = nMotorEncoder[motorY]*ENC_TO_MM;
+	deltaX = xTarget - xCurrent;
+	deltaY = yTarget - yCurrent;
+	deltaV = sqrt(deltaX*deltaX + deltaY*deltaY);
 	
 	display(0, xCurrent, yCurrent);
 	display(1, deltaX, deltaY);
 	
-	// xCur=nMotorEncoder[motorX]*ENC_TO_MM;
-	// yCur=nMotorEncoder[motorY]*ENC_TO_MM;
-	// xTar=xTarget;
-	// yTar=yTarget;
-	// deX = xTar-xCur;
-	// deY = yTar-yCur;
-	
 	if (abs(deltaX) > TOLERANCE)
 	{
-		float powerX = motorPower((float) VELOCITY * deltaX / deltaV);
+		powerX = motorPower((float) VELOCITY * deltaX / deltaV);
 		step = 1.5;//DEBUG
 		if (deltaX < 0)
 			powerX *= -1;
@@ -41,7 +32,7 @@ void moveXY (float xTarget, float yTarget)
 	if (abs(deltaY) > TOLERANCE)
 	{
 		step=1.5;//DEBUG
-		float powerY = motorPower((float) VELOCITY * deltaY / deltaV);
+		powerY = motorPower((float) VELOCITY * deltaY / deltaV);
 		
 		moY = powerY
 		
