@@ -1,5 +1,5 @@
 // by Zachariah, Kaelan, Lyndon, Daddy Parth
-#include<global.c>
+#include "global.h"
 #include<move.c>
 #include<start.c>
 #include<print.c>
