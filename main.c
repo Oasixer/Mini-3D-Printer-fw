@@ -9,8 +9,8 @@ task main ()
 {
 waitForButtonPress();
 zero();
-waitForButtonPress();
 scanPaper();
 waitForButtonPress();
+zero();
 runPrint();
 }
