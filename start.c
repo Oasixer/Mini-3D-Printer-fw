@@ -18,9 +18,9 @@ void zeroAxis(tMotor motorAxis, int powerAxis, tSensor touchAxis)
 void zero(tSensor touchX, tSensor touchY, tSensor touchZ){
 	const float ZERO_VELOCITY = 20;
 	
-	float powerX = -ZERO_VELOCITY;
-	float powerY = -ZERO_VELOCITY;
-	float powerZ = max(-2*ZERO_VELOCITY, -100);
+	powerX = -ZERO_VELOCITY;
+	powerY = -ZERO_VELOCITY;
+	powerZ = max(-2*ZERO_VELOCITY, -100);
 	
 	// zero x-axis
 	zeroAxis(motorX, -ZERO_VELOCITY, touchX);
