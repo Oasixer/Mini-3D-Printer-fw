@@ -2,8 +2,52 @@
 #include<move.c>
 #include<buttons.c>
 
-void zero(){
-	//zero X
+void zeroAxis(tMotor motorAxis, int powerAxis, tSensor touchAxis)
+{
+	// zero x-axis
+	motor[motorAxis] = powerAxis;
+	while(SensorValue[touchAxis] == 0) {}
+	motor[motorAxis] = 0;
+	nMotorEncoder[motorAxis] = 0;
+}
+
+void zero(tSensor touchX, tSensor touchY, tSensor touchZ){
+	const float ZERO_VELOCITY = 20;
+	
+	float powerX = -ZERO_VELOCITY;
+	float powerY = -ZERO_VELOCITY;
+	float powerZ = max(-2*ZERO_VELOCITY, -100);
+	
+	// zero x-axis
+	zeroAxis(motorX, -ZERO_VELOCITY, touchX);
+	zeroAxis(motorY, -ZERO_VELOCITY, touchY);
+	zeroAxis(motorZ, -max(-2*ZERO_VELOCITY, -100), touchZ);
+	
+	moveXY(1, 1);
+	moveZ(1);
+	
+	zeroAxis(motorX, -ZERO_VELOCITY/2, touchX);
+	zeroAxis(motorY, -ZERO_VELOCITY/2, touchY);
+	zeroAxis(motorZ, -max(-ZERO_VELOCITY, -100), touchZ);
+	
+	// motor[motorX] = powerX;
+	// while(SensorValue[touchX] == 0) {}
+	// motor[motorX] = 0;
+	// nMotorEncoder[motorX] = 0;
+	
+	// zero y-axis
+	
+	// motor[motorY] = powerY;
+	// while(SensorValue[touchY] == 0) {}
+	// motor[motorY] = 0;
+	// nMotorEncoder[motorY] = 0;
+	
+	// zero z-axis
+	// motor[motorZ] = powerZ;
+	// while(SensorValue[touchZ] == 0) {}
+	// motor[motorZ] = 0;
+	// nMotorEncoder[motorZ] = 0;
+	
 	moX=-20;
 	motor[motorX]=moX;
 	waitForButtonPress();
