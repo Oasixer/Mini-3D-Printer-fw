@@ -86,7 +86,7 @@ void scanPaper(){
 	for (int x=0;x<6;x++){
 		for(int y=0;y<6;y++){
 			step=1.1;//DEBUG
-			moveXY(x*15-7,y*15-7);
+			moveXY(x*15+7,y*15+7.5);
 			step=1.9;//DEBUG
 			cubes[x][y]=scanColour();
 		}
