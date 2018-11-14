@@ -8,6 +8,7 @@
 task main ()
 {
 configureI2C(S4);
+extrude(true);
 waitForButtonPress();
 zero();
 scanPaper();
