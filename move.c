@@ -1,5 +1,5 @@
-#include<global.c>
-#include<EV3Servo-lib-UW.c>
+#include "global.c"
+#include "EV3Servo-lib-UW.c"
 
 float motorPower (float velocity)
 {
