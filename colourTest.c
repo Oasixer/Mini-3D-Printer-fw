@@ -4,8 +4,9 @@ Testing Procedure for colour values
 testing procedure for testing involves the scanning of the colour on 
 a grid involving 7 colours
 */
+#include "move.c"
 int values[3]; 		//store 3 colour values
-int colourTest[7];
+int colourTest[5];// test one row of the grid
 int scanColour()
 {
 	SensorType[S1]=sensorEV3_Color;
@@ -27,8 +28,9 @@ int scanColour()
 
 task main()
 {
-	for (int i = 0; i < 7; i++)
+	for (int i = 0; i < 5; i++)
 	{
+		moveXY(i + 15, i + 15);
 		colourTest[i] = scanColour();
 	}
 }
