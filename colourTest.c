@@ -30,7 +30,7 @@ task main()
 {
 	for (int i = 0; i < 5; i++)
 	{
-		moveXY(i + 15, i + 15);
+		moveXY(i * 15, i * 15);
 		colourTest[i] = scanColour();
 	}
 }
