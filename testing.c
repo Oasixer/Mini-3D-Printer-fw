@@ -21,15 +21,15 @@ int scanColour()
 		wait1Msec(50);
 		values[2]=(int)SensorValue[S1];
 		wait1Msec(50);
-	} while (!(values[0]==values[1]&&values[0]==values[2]));
+	} while (!(values[0]==values[1] && values[0]==values[2]));
 		return values[2];
 }
 
 task main()
 {
-	for (int i = 0; i < 7; ++i)
+	for (int i = 0; i < 7; i++)
 	{
-		
+		colourTest[i] = scanColour();
 	}
 }
 
