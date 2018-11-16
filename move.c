@@ -9,6 +9,8 @@ void display(int line, float x, float y)
 	displayString(line, "(%f, %f)", x, y);
 }
 
+
+
 float motorPower (float velocity)
 {
 	const float slope = 1, offset = 0, exponent = 1;
