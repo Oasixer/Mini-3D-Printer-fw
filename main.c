@@ -9,7 +9,7 @@ task main ()
 {
 	// zero test
 	waitForEnter();
-	zero();
+	zero(TOUCH_Y, TOUCH_Z, 50);
 	// end test
 	
 // configureI2C(S4);

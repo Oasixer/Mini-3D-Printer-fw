@@ -1,6 +1,6 @@
 #include "global.c"
 
-void waitForButtonPress(){
+void waitForEnter(){
 	while (!getButtonPress(buttonEnter)){}
 	while (getButtonPress(buttonEnter)){}
 }
