@@ -9,24 +9,26 @@ void display(int line, float x, float y)
 	displayString(line, "(%f, %f)", x, y);
 }
 
-
-
 float motorPower (float velocity)
 {
 	const float slope = 1, offset = 0, exponent = 1;
 	// if (velocity < 0)
 		// return -slope * pow(abs(velocity), exponent) + offset;
 	// else
-	//return slope * pow(abs(velocity), exponent) + offset;
-	return velocity;
+	//return 
+
+	
+	return constrain(velocity, -100, 100);
 }
 
 void moveXY (float xTarget, float yTarget)
 {
 	xCurrent = nMotorEncoder[motorX]*ENC_TO_MM;
 	yCurrent = nMotorEncoder[motorY]*ENC_TO_MM;
+	
 	deltaX = xTarget - xCurrent;
 	deltaY = yTarget - yCurrent;
+	
 	float deltaV = sqrt(deltaX*deltaX + deltaY*deltaY);
 
 	if (abs(deltaX) > TOLERANCE)

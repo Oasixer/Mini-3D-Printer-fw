@@ -1,16 +1,10 @@
 #include "global.c"
 #include "move.c"
 #include "buttons.c"
+#include "math.c"
 
 #ifndef START_C
 #define START_C
-
-float max(float number1, float number2)
-{
-	if (number1 > number2)
-		return number1;
-	return number2;
-}
 
 void configureI2C (tSensors port){ // make sure to call function to set up servo
 	SensorType[port] = sensorI2CCustom9V;
