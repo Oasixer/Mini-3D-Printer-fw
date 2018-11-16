@@ -22,10 +22,10 @@ void moveXY (float xTarget, float yTarget)
 	deltaX = xTarget - xCurrent;
 	deltaY = yTarget - yCurrent;
 	float deltaV = sqrt(deltaX*deltaX + deltaY*deltaY);
-	
+
 	display(0, xCurrent, yCurrent);
 	display(1, deltaX, deltaY);
-	
+
 	if (abs(deltaX) > TOLERANCE)
 	{
 		powerX = motorPower((float) VELOCITY * deltaX / deltaV);
@@ -38,14 +38,14 @@ void moveXY (float xTarget, float yTarget)
 	{
 		step=1.5;//DEBUG
 		powerY = motorPower((float) VELOCITY * deltaY / deltaV);
-		
+
 		if (deltaY < 0)
 			powerY *= -1;
 		motor[motorY] = powerY;
 	}
-	
+
 	display(3, powerX, powerY);
-	
+
 	while (!(abs(xTarget - xCurrent) < TOLERANCE && abs(yTarget - yCurrent) > TOLERANCE))
 	{
 		xCurrent = nMotorEncoder[motorX] * ENC_TO_MM;
@@ -78,9 +78,9 @@ void moveZ (float zTarget)
 void extrude (bool input)
 {
 	if (input){
-		setServoPosition(S4, 1, 25);// extrude on
+		setServoPosition(S4, 1, 100);// extrude on
 	}
 	else {
-		setServoPosition(S4, 1, 0);//extrude off
+		setServoPosition(S4, 1, 50);//extrude off
 	}
 }
