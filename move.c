@@ -1,6 +1,11 @@
 #include "global.c"
 #include "EV3Servo-lib-UW.c"
 
+void display(int line, float x, float y)
+{
+	displayString(line, "(%f, %f)", x, y);
+}
+
 float motorPower (float velocity)
 {
 	const float slope = 1, offset = 0, exponent = 1;
@@ -16,7 +21,7 @@ void moveXY (float xTarget, float yTarget)
 	yCurrent = nMotorEncoder[motorY]*ENC_TO_MM;
 	deltaX = xTarget - xCurrent;
 	deltaY = yTarget - yCurrent;
-	deltaV = sqrt(deltaX*deltaX + deltaY*deltaY);
+	float deltaV = sqrt(deltaX*deltaX + deltaY*deltaY);
 	
 	display(0, xCurrent, yCurrent);
 	display(1, deltaX, deltaY);
@@ -62,11 +67,6 @@ void moveXY (float xTarget, float yTarget)
 	moX=0;
 	motor[motorY]=0;
 	moY=0;
-}
-
-void display(int line, float x, float y)
-{
-	displayString(line, "(%f, %f)", x, y);
 }
 
 void moveZ (float zTarget)
