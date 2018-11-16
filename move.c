@@ -12,10 +12,10 @@ void display(int line, float x, float y)
 float motorPower (float velocity)
 {
 	const float slope = 1, offset = 0, exponent = 1;
-	if (velocity < 0)
-		return -slope * pow(abs(velocity), exponent) + offset;
-	else
-		return slope * pow(abs(velocity), exponent) + offset;
+	// if (velocity < 0)
+		// return -slope * pow(abs(velocity), exponent) + offset;
+	// else
+	return slope * pow(abs(velocity), exponent) + offset;
 }
 
 void moveXY (float xTarget, float yTarget)
@@ -32,18 +32,11 @@ void moveXY (float xTarget, float yTarget)
 	if (abs(deltaX) > TOLERANCE)
 	{
 		powerX = motorPower((float) VELOCITY * deltaX / deltaV);
-		step = 1.5;//DEBUG
-		if (deltaX < 0)
-			powerX *= -1;
 		motor[motorX] = powerX;
 	}
 	if (abs(deltaY) > TOLERANCE)
 	{
-		step=1.5;//DEBUG
 		powerY = motorPower((float) VELOCITY * deltaY / deltaV);
-
-		if (deltaY < 0)
-			powerY *= -1;
 		motor[motorY] = powerY;
 	}
 
