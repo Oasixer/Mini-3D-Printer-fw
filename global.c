@@ -1,4 +1,8 @@
 // by Zachariah, Kaelan, Lyndon, Daddy Parth
+
+#IFNDEF GLOBAL_C
+#DEFINE GLOBAL_C
+
 const int VELOCITY = 25; //mm/s 200/8
 const float TOLERANCE = 0.5;
 const tMotor motorY = motorA;
@@ -16,3 +20,5 @@ const float LAYERHEIGHT=0.5;
 const float MAXLAYER=5*LAYERHEIGHT;
 float step;//for debugging
 int cubes[5][5];
+
+#ENDIF

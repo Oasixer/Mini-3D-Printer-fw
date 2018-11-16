@@ -2,6 +2,9 @@
 #include "move.c"
 #include "buttons.c"
 
+#IFNDEF START_C
+#DEFINE START_C
+
 float max(float number1, float number2)
 {
 	if (number1 > number2)
@@ -30,7 +33,7 @@ void zero(tSensors touchY, tSensors touchZ, int velocity)
 	while(SensorValue[touchZ] == 0) {}
 	motor[motorZ1] = motor[motorZ2] = 0;
 	nMotorEncoder[motorZ1] = 0;
-	nMotorEncoder[mototZ2] = 0;
+	nMotorEncoder[motorZ2] = 0;
 	
 	// zero x-axis
 	
@@ -48,7 +51,7 @@ void zero(tSensors touchY, tSensors touchZ, int velocity)
 	while(SensorValue[touchZ] == 0) {}
 	motor[motorZ1] = motor[motorZ2] = 0;
 	nMotorEncoder[motorZ1] = 0;
-	nMotorEncoder[mototZ2] = 0;
+	nMotorEncoder[motorZ2] = 0;
 	
 	//zero x-axis
 }
