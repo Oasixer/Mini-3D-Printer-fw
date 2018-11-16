@@ -1,6 +1,9 @@
 #include "global.c"
 #include "move.c"
 
+#IFNDEF PRINT_C
+#DEFINE PRINT_C
+
 void printSquare (float leftx, float boty){
 	extrude(true);
 	wait1Msec(300);
@@ -72,3 +75,5 @@ void runPrint (){
 		moveZ(layer*LAYERHEIGHT);
 	}
 }
+
+#ENDIF

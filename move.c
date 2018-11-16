@@ -1,6 +1,9 @@
 #include "global.c"
 #include "EV3Servo-lib-UW.c"
 
+#IFNDEF MOVE_C
+#DEFINE MOVE_C
+
 void display(int line, float x, float y)
 {
 	displayString(line, "(%f, %f)", x, y);
@@ -84,3 +87,5 @@ void extrude (bool input)
 		setServoPosition(S4, 1, 0);//extrude off
 	}
 }
+
+#ENDIF
