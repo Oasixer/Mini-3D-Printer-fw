@@ -15,7 +15,8 @@ float motorPower (float velocity)
 	// if (velocity < 0)
 		// return -slope * pow(abs(velocity), exponent) + offset;
 	// else
-	return slope * pow(abs(velocity), exponent) + offset;
+	//return slope * pow(abs(velocity), exponent) + offset;
+	return velocity;
 }
 
 void moveXY (float xTarget, float yTarget)
@@ -37,7 +38,7 @@ void moveXY (float xTarget, float yTarget)
 	if (abs(deltaY) > TOLERANCE)
 	{
 		powerY = motorPower((float) VELOCITY * deltaY / deltaV);
-		motor[motorY] = powerY;
+		motor[motorY] = powerX;
 	}
 
 	display(3, powerX, powerY);
