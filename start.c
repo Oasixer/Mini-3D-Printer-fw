@@ -6,7 +6,7 @@ void configureI2C (tSensors port){ // make sure to call function to set up servo
 	SensorType[port] = sensorI2CCustom9V;
 }
 
-void zeroAxis(tMotor motorAxis, int powerAxis, tSensor touchAxis)
+void zeroAxis(tMotor motorAxis, int powerAxis, tSensorw touchAxis)
 {
 	// zero x-axis
 	motor[motorAxis] = powerAxis;
@@ -15,55 +15,27 @@ void zeroAxis(tMotor motorAxis, int powerAxis, tSensor touchAxis)
 	nMotorEncoder[motorAxis] = 0;
 }
 
-void zero(tSensor touchX, tSensor touchY, tSensor touchZ, int velocity){
-	
-	powerX = -veloctiy;
+void zero(tSensors touchY, tSensors touchZ, int velocity)
+{	
+	powerX = -velocity;
 	powerY = -velocity;
 	powerZ = max(-2*velocity, -100);
 	
-	// zero x-axis
-	zeroAxis(motorX, -velocity, touchX);
+	// zero y,z-axis
 	zeroAxis(motorY, -velocity, touchY);
 	zeroAxis(motorZ, -max(-2*velocity, -100), touchZ);
+	
+	// zero x-axis
 	
 	moveXY(1, 1);
 	moveZ(1);
 	
-	zeroAxis(motorX, -velocity/2, touchX);
+	// zero at half speed
+	// zero y,z-axis
 	zeroAxis(motorY, -velocity/2, touchY);
 	zeroAxis(motorZ, -max(-velocity, -100), touchZ);
 	
-	// motor[motorX] = powerX;
-	// while(SensorValue[touchX] == 0) {}
-	// motor[motorX] = 0;
-	// nMotorEncoder[motorX] = 0;
-	
-	// zero y-axis
-	
-	// motor[motorY] = powerY;
-	// while(SensorValue[touchY] == 0) {}
-	// motor[motorY] = 0;
-	// nMotorEncoder[motorY] = 0;
-	
-	// zero z-axis
-	// motor[motorZ] = powerZ;
-	// while(SensorValue[touchZ] == 0) {}
-	// motor[motorZ] = 0;
-	// nMotorEncoder[motorZ] = 0;
-	
-	// moX=-20;
-	// motor[motorX]=moX;
-	// waitForButtonPress();
-	// moX=0;
-	// motor[motorX]=moX;
-
-	// // zero Y
-	// SensorType[S2]=sensorEV3_Touch;
-	// SensorMode[S2]=modeEV3Touch_Touch;
-	// moY=-50;
-	// // wait for sensor
-	// moY=0;//UNFINISHED
-	
+	//zero x-axis
 }
 
 int scanColour()
