@@ -7,24 +7,24 @@ void configureI2C (tSensors port){ // make sure to call function to set up servo
 	SensorType[port] = sensorI2CCustom9V;
 }
 
-void zeroAxis(tMotor motorAxis, int powerAxis, tSensors touchAxis)
-{
-	// zero x-axis
-	motor[motorAxis] = powerAxis;
-	while(SensorValue[touchAxis] == 0) {}
-	motor[motorAxis] = 0;
-	nMotorEncoder[motorAxis] = 0;
-}
-
 void zero(tSensors touchY, tSensors touchZ, int velocity)
 {	
 	powerX = -velocity;
 	powerY = -velocity;
 	powerZ = max(-2*velocity, -100);
 	
-	// zero y,z-axis
-	zeroAxis(motorY, -velocity, touchY);
-	zeroAxis(motorZ, -max(-2*velocity, -100), touchZ);
+	// zero y-axis
+	motor[motorY] = powerY;
+	while(SensorValue[touchY] == 0) {}
+	motor[motorY] = 0;
+	nMotorEncoder[motorY] = 0;
+	
+	// zero z-axis
+	motor[motorZ1] = motor[motorZ2] = powerZ;
+	while(SensorValue[touchZ] == 0) {}
+	motor[motorZ1] = motor[motorZ2] = 0;
+	nMotorEncoder[motorZ1] = 0;
+	nMotorEncoder[mototZ2] = 0;
 	
 	// zero x-axis
 	
