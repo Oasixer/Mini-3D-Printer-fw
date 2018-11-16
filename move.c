@@ -46,14 +46,12 @@ void moveXY (float xTarget, float yTarget)
 	{
 		xCurrent = nMotorEncoder[motorX] * ENC_TO_MM;
 		yCurrent = nMotorEncoder[motorY] * ENC_TO_MM;
+		
 		if (abs(xTarget - xCurrent) < TOLERANCE)
-		{
 			motor[motorX] = 0;
-		}
+		
 		if (abs(yTarget - yCurrent) < TOLERANCE)
-		{
 			motor[motorY] = 0;
-		}
 	}
 }
 
