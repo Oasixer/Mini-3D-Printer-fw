@@ -17,7 +17,7 @@ const tSensors TOUCH_Z = S2;
 const tSensors TOUCH_Y = S3;
 const tSensors I2C_PORT = S4;
 
-float deltaX, deltaY, powerX, powerY, powerZ, yTar, xTar, xCurrent, yCurrent;
+float deltaX, deltaY, yTar, xTar, xCurrent, yCurrent;
 
 const float ENC_TO_MM=(float)24/360;
 const float MM_TO_ENC=15;
