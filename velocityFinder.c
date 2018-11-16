@@ -1,9 +1,10 @@
 // velocity finder by Zachariah Mears
 // used to calibrate motorPower function
-#include<global.c>
+//#include<global.c>
 
 int testCases [10] = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
-
+const float MM_TO_ENC = 15;
+tMotor testMotor = motorD;
 task main()
 {
 
