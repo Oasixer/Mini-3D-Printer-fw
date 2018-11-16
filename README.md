@@ -9,5 +9,4 @@ Built by Zachariah, Kaelan, Lyndon and Daddy Parth
 - fake prototypes
 - motor power function
 - fix homing(zeroing)
-- servo testing
 - test cases list
