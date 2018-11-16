@@ -2,7 +2,7 @@
 #include "move.c"
 #include "buttons.c"
 
-void max(float number1, float number2)
+float max(float number1, float number2)
 {
 	if (number1 > number2)
 		return number1;
