@@ -1,6 +1,5 @@
 //servo testing
-#include "EV3Servo-lib_UW.c"
-#include "move.c"
+#include "EV3Servo-lib-UW.c"
 task main(){
   //setServoPosition(int ev3Port, int servo_number, int position);
   //setServoPosition(S4, 1, 25);// extrude on
@@ -10,12 +9,6 @@ task main(){
 	for (int i = 0; i < 25; i++)
 	{
 		setServoPosition(S4, 1, i);
-		wait1MSec(1000);
+		wait1Msec(1000);
 	}
-
-	setServoPosition(S4, 1, 0);
-	//testing function calls
-	extrude(1);
-	wait1MSec(1000);
-	extrude(0);
 }
