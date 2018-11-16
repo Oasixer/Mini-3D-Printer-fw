@@ -49,7 +49,7 @@ void moveXY (float xTarget, float yTarget)
 
 	display(3, powerX, powerY);
 
-	while (!(abs(xTarget - xCurrent) < TOLERANCE && abs(yTarget - yCurrent) > TOLERANCE))
+	while (!(abs(xTarget - xCurrent) < TOLERANCE && abs(yTarget - yCurrent) < TOLERANCE))
 	{
 		xCurrent = nMotorEncoder[motorX] * ENC_TO_MM;
 		yCurrent = nMotorEncoder[motorY] * ENC_TO_MM;
