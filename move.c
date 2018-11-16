@@ -27,21 +27,16 @@ void moveXY (float xTarget, float yTarget)
 	deltaY = yTarget - yCurrent;
 	float deltaV = sqrt(deltaX*deltaX + deltaY*deltaY);
 
-	display(0, xCurrent, yCurrent);
-	display(1, deltaX, deltaY);
-
 	if (abs(deltaX) > TOLERANCE)
 	{
-		powerX = motorPower((float) VELOCITY * deltaX / deltaV);
+		float powerX = motorPower((float) VELOCITY * deltaX / deltaV);
 		motor[motorX] = powerX;
 	}
 	if (abs(deltaY) > TOLERANCE)
 	{
-		powerY = motorPower((float) VELOCITY * deltaY / deltaV);
-		motor[motorY] = powerX;
+		float powerY = motorPower((float) VELOCITY * deltaY / deltaV);
+		motor[motorY] = powerY;
 	}
-
-	display(3, powerX, powerY);
 
 	while (!(abs(xTarget - xCurrent) < TOLERANCE && abs(yTarget - yCurrent) < TOLERANCE))
 	{
