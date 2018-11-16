@@ -2,8 +2,8 @@
 #include "move.c"
 #include "buttons.c"
 
-#IFNDEF START_C
-#DEFINE START_C
+#ifndef START_C
+#define START_C
 
 float max(float number1, float number2)
 {
@@ -76,8 +76,8 @@ int scanColour()
 }
 
 void scanPaper(){
-	for (int x=0;x<6;x++){
-		for(int y=0;y<6;y++){
+	for (int x = 0; x < 6; x++){
+		for(int y = 0; y < 6; y++){
 			step=1.1;//DEBUG
 			moveXY(x*15+7.5,y*15+7.5);
 			step=1.9;//DEBUG
@@ -86,4 +86,4 @@ void scanPaper(){
 	}
 }
 
-#ENDIF
+#endif

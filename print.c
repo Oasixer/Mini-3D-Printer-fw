@@ -1,8 +1,8 @@
 #include "global.c"
 #include "move.c"
 
-#IFNDEF PRINT_C
-#DEFINE PRINT_C
+#ifndef PRINT_C
+#define PRINT_C
 
 void printSquare (float leftx, float boty){
 	extrude(true);
@@ -76,4 +76,4 @@ void runPrint (){
 	}
 }
 
-#ENDIF
+#endif
