@@ -10,7 +10,7 @@ void printSquare (float leftx, float boty){
 	moveXY(leftx+15,boty+15);
 	moveXY(leftx,boty+15);
 
-	int xCurrent = 0; yCurrent = 1;
+	int xTarget = 0, yTarget = 1;
 	for (int pattern = 0; pattern < 7; pattern++)
 	{
 		for (int count = 0; count < 4; count++)

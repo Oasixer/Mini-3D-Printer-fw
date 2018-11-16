@@ -8,7 +8,7 @@
 task main ()
 {
 	// zero test
-	waitForButtonPress();
+	waitForEnter();
 	zero();
 	// end test
 	
