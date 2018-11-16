@@ -53,18 +53,29 @@ void moveXY (float xTarget, float yTarget)
 		if (abs(yTarget - yCurrent) < TOLERANCE)
 			motor[motorY] = 0;
 	}
+	motor[motorX] = motor[motorY] = 0;
 }
 
 void moveZ (float zTarget)
 {
-	float zCur = nMotorEncoder[motorZ1]*ENC_TO_MM;
+	float zCurrent1 = nMotorEncoder[motorZ1]*ENC_TO_MM;
+	float zCurrent2 = nMotorEncoder[motorZ2]*ENC_TO_MM;
+	
 	int direction = 1;
-	if (zTarget < zCur)
+	if (zTarget < zCurrent1)
 		direction = -1;
+	
 	motor[motorZ1] = motor[motorZ2] = 100*direction;
-	while(zTarget > zCur*direction)
+	while(!(abs(zTarget-zCurrent1) < TOLERANCE && abs(zTarget-zCurrent2) < TOLERANCE))
 	{
-		zCur = nMotorEncoder[motorZ1]*ENC_TO_MM;
+		zCurrent1 = nMotorEncoder[motorZ1]*ENC_TO_MM;
+		zCurrent2 = nMotorEncoder[motorZ2]*ENC_TO_MM;
+		
+		if (abs(zCurrent1-zTarget) < TOLERANCE)
+			motor[motorZ1] = 0;
+		
+		if (abs(zCurrent2-zTarget) < TOLERANCE)
+			motor[motorZ2] = 0;
 	}
 	motor[motorZ1] = motor[motorZ2] = 0;
 }

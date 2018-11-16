@@ -12,6 +12,5 @@ Nov 16, 2018
 
 task main()
 {
-	waitForEnter();
 	scanPaper();
 }
