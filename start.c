@@ -15,24 +15,23 @@ void zeroAxis(tMotor motorAxis, int powerAxis, tSensor touchAxis)
 	nMotorEncoder[motorAxis] = 0;
 }
 
-void zero(tSensor touchX, tSensor touchY, tSensor touchZ){
-	const float ZERO_VELOCITY = 20;
+void zero(tSensor touchX, tSensor touchY, tSensor touchZ, int velocity){
 	
-	powerX = -ZERO_VELOCITY;
-	powerY = -ZERO_VELOCITY;
-	powerZ = max(-2*ZERO_VELOCITY, -100);
+	powerX = -veloctiy;
+	powerY = -velocity;
+	powerZ = max(-2*velocity, -100);
 	
 	// zero x-axis
-	zeroAxis(motorX, -ZERO_VELOCITY, touchX);
-	zeroAxis(motorY, -ZERO_VELOCITY, touchY);
-	zeroAxis(motorZ, -max(-2*ZERO_VELOCITY, -100), touchZ);
+	zeroAxis(motorX, -velocity, touchX);
+	zeroAxis(motorY, -velocity, touchY);
+	zeroAxis(motorZ, -max(-2*velocity, -100), touchZ);
 	
 	moveXY(1, 1);
 	moveZ(1);
 	
-	zeroAxis(motorX, -ZERO_VELOCITY/2, touchX);
-	zeroAxis(motorY, -ZERO_VELOCITY/2, touchY);
-	zeroAxis(motorZ, -max(-ZERO_VELOCITY, -100), touchZ);
+	zeroAxis(motorX, -velocity/2, touchX);
+	zeroAxis(motorY, -velocity/2, touchY);
+	zeroAxis(motorZ, -max(-velocity, -100), touchZ);
 	
 	// motor[motorX] = powerX;
 	// while(SensorValue[touchX] == 0) {}
@@ -52,18 +51,18 @@ void zero(tSensor touchX, tSensor touchY, tSensor touchZ){
 	// motor[motorZ] = 0;
 	// nMotorEncoder[motorZ] = 0;
 	
-	moX=-20;
-	motor[motorX]=moX;
-	waitForButtonPress();
-	moX=0;
-	motor[motorX]=moX;
+	// moX=-20;
+	// motor[motorX]=moX;
+	// waitForButtonPress();
+	// moX=0;
+	// motor[motorX]=moX;
 
-	//zero Y
-	SensorType[S2]=sensorEV3_Touch;
-	SensorMode[S2]=modeEV3Touch_Touch;
-	moY=-50;
-	//wait for sensor
-	moY=0;//UNFINISHED
+	// // zero Y
+	// SensorType[S2]=sensorEV3_Touch;
+	// SensorMode[S2]=modeEV3Touch_Touch;
+	// moY=-50;
+	// // wait for sensor
+	// moY=0;//UNFINISHED
 	
 }
 
