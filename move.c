@@ -39,8 +39,6 @@ void moveXY (float xTarget, float yTarget)
 		step=1.5;//DEBUG
 		powerY = motorPower((float) VELOCITY * deltaY / deltaV);
 		
-		moY = powerY
-		
 		if (deltaY < 0)
 			powerY *= -1;
 		motor[motorY] = powerY;
@@ -55,18 +53,12 @@ void moveXY (float xTarget, float yTarget)
 		if (abs(xTarget - xCurrent) < TOLERANCE)
 		{
 			motor[motorX] = 0;
-			moX=0;
 		}
 		if (abs(yTarget - yCurrent) < TOLERANCE)
 		{
 			motor[motorY] = 0;
-			moY=0;
 		}
 	}
-	motor[motorX]=0;
-	moX=0;
-	motor[motorY]=0;
-	moY=0;
 }
 
 void moveZ (float zTarget)

@@ -1,7 +1,13 @@
 #include "global.c"
 #include "move.c"
 #include "buttons.c"
-#include <cmath>
+
+void max(float number1, float number2)
+{
+	if (number1 > number2)
+		return number1;
+	return number2;
+}
 
 void configureI2C (tSensors port){ // make sure to call function to set up servo
 	SensorType[port] = sensorI2CCustom9V;
@@ -31,10 +37,18 @@ void zero(tSensors touchY, tSensors touchZ, int velocity)
 	moveXY(1, 1);
 	moveZ(1);
 	
-	// zero at half speed
-	// zero y,z-axis
-	zeroAxis(motorY, -velocity/2, touchY);
-	zeroAxis(motorZ, -max(-velocity, -100), touchZ);
+	// zero y-axis
+	motor[motorY] = powerY / 2;
+	while(SensorValue[touchY] == 0) {}
+	motor[motorY] = 0;
+	nMotorEncoder[motorY] = 0;
+	
+	// zero z-axis at half speed
+	motor[motorZ1] = motor[motorZ2] = powerZ / 2;
+	while(SensorValue[touchZ] == 0) {}
+	motor[motorZ1] = motor[motorZ2] = 0;
+	nMotorEncoder[motorZ1] = 0;
+	nMotorEncoder[mototZ2] = 0;
 	
 	//zero x-axis
 }
