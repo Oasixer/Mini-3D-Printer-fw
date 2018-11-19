@@ -47,7 +47,7 @@ void moveXY (float xTarget_local, float yTarget_local)
 		motor[motorY] = powerY;
 	}
 
-	while ((!(abs(deltaX) < TOLERANCE && abs(deltaY) < TOLERANCE))&&(motorX!=0&&motorY!=0)
+	while ((!(abs(deltaX) < TOLERANCE && abs(deltaY) < TOLERANCE))&&(powerX!=0&&powerY!=0)
 	{
 		wait1Msec(20);
 		xCurrent = nMotorEncoder[motorX] * ENC_TO_MM;
