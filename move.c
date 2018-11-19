@@ -1,5 +1,6 @@
 #include "global.c"
 #include "EV3Servo-lib-UW.c"
+#include "math.c"
 
 #ifndef MOVE_C
 #define MOVE_C
@@ -15,20 +16,24 @@ float motorPower (float velocity)
 	// if (velocity < 0)
 		// return -slope * pow(abs(velocity), exponent) + offset;
 	// else
-	//return 
+	//return
 
-	
+
 	return constrain(velocity, -100, 100);
 }
 
-void moveXY (float xTarget, float yTarget)
+void moveXY (float xTarget_local, float yTarget_local)
 {
+	wait1Msec(30);
+	xTarget=xTarget_local;
+	yTarget=yTarget_local;
+	xTarget= -xTarget;
 	xCurrent = nMotorEncoder[motorX]*ENC_TO_MM;
-	yCurrent = nMotorEncoder[motorY]*ENC_TO_MM;
-	
+  yCurrent = nMotorEncoder[motorY]*ENC_TO_MM;
+
 	deltaX = xTarget - xCurrent;
 	deltaY = yTarget - yCurrent;
-	
+
 	float deltaV = sqrt(deltaX*deltaX + deltaY*deltaY);
 
 	if (abs(deltaX) > TOLERANCE)
@@ -42,15 +47,18 @@ void moveXY (float xTarget, float yTarget)
 		motor[motorY] = powerY;
 	}
 
-	while (!(abs(xTarget - xCurrent) < TOLERANCE && abs(yTarget - yCurrent) < TOLERANCE))
+	while ((!(abs(deltaX) < TOLERANCE && abs(deltaY) < TOLERANCE))&&(motorX!=0&&motorY!=0)
 	{
+		wait1Msec(20);
 		xCurrent = nMotorEncoder[motorX] * ENC_TO_MM;
 		yCurrent = nMotorEncoder[motorY] * ENC_TO_MM;
-		
-		if (abs(xTarget - xCurrent) < TOLERANCE)
+		deltaX = xTarget - xCurrent;
+		deltaY = yTarget - yCurrent;
+
+		if (abs(deltaX) < TOLERANCE)
 			motor[motorX] = 0;
-		
-		if (abs(yTarget - yCurrent) < TOLERANCE)
+
+		if (abs(deltaY) < TOLERANCE)
 			motor[motorY] = 0;
 	}
 	motor[motorX] = motor[motorY] = 0;
@@ -58,22 +66,22 @@ void moveXY (float xTarget, float yTarget)
 
 void moveZ (float zTarget)
 {
-	float zCurrent1 = nMotorEncoder[motorZ1]*ENC_TO_MM;
-	float zCurrent2 = nMotorEncoder[motorZ2]*ENC_TO_MM;
-	
+	float zCurrent1 = nMotorEncoder[motorZ1]*Z_ENC_TO_MM;
+	float zCurrent2 = nMotorEncoder[motorZ2]*Z_ENC_TO_MM;
+
 	int direction = 1;
 	if (zTarget < zCurrent1)
 		direction = -1;
-	
+
 	motor[motorZ1] = motor[motorZ2] = 100*direction;
 	while(!(abs(zTarget-zCurrent1) < TOLERANCE && abs(zTarget-zCurrent2) < TOLERANCE))
 	{
-		zCurrent1 = nMotorEncoder[motorZ1]*ENC_TO_MM;
-		zCurrent2 = nMotorEncoder[motorZ2]*ENC_TO_MM;
-		
+		zCurrent1 = nMotorEncoder[motorZ1]*Z_ENC_TO_MM;
+		zCurrent2 = nMotorEncoder[motorZ2]*Z_ENC_TO_MM;
+
 		if (abs(zCurrent1-zTarget) < TOLERANCE)
 			motor[motorZ1] = 0;
-		
+
 		if (abs(zCurrent2-zTarget) < TOLERANCE)
 			motor[motorZ2] = 0;
 	}
@@ -83,10 +91,10 @@ void moveZ (float zTarget)
 void extrude (bool input)
 {
 	if (input){
-		setServoPosition(S4, 1, 100);// extrude on
+		setServoPosition(S4, 1, 50);// extrude on
 	}
 	else {
-		setServoPosition(S4, 1, 50);//extrude off
+		setServoPosition(S4, 1, 40);//extrude off
 	}
 }
 

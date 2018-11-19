@@ -13,5 +13,5 @@ Nov 16, 2018
 task main()
 {
 	waitForEnter();
-	zero(TOUCH_Y, TOUCH_Z, 50);
+	zero();
 }

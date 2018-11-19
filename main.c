@@ -4,16 +4,16 @@
 #include "start.c"
 #include "print.c"
 #include "buttons.c"
+#include "math.c"
 
 task main ()
-{	
+{
 	configureI2C(S4);
-	extrude(true);
-	wait1MSec(3000);
-	waitForButtonPress();
+	extrude(false);
+	//waitForButtonPress();
 	zero();
+	wait1Msec(3000);
 	scanPaper();
-	waitForButtonPress();
-	zero();
 	runPrint();
+	//printSquare(0,0);
 }
