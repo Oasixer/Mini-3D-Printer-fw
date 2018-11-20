@@ -22,32 +22,31 @@ float motorPower (float velocity)
 	return constrain(velocity, -100, 100);
 }
 
-void moveXY (float xTarget_local, float yTarget_local)
+void moveXY (float xTarget, float yTarget)
 {
-	wait1Msec(30);
-	xTarget=xTarget_local;
-	yTarget=yTarget_local;
+	float powerX = 0, powerY = 0;
 	xTarget= -xTarget;
-	xCurrent = nMotorEncoder[motorX]*ENC_TO_MM;
-  yCurrent = nMotorEncoder[motorY]*ENC_TO_MM;
+	float xCurrent = nMotorEncoder[motorX]*ENC_TO_MM;
+  float yCurrent = nMotorEncoder[motorY]*ENC_TO_MM;
 
-	deltaX = xTarget - xCurrent;
-	deltaY = yTarget - yCurrent;
+	float deltaX = xTarget - xCurrent;
+	float deltaY = yTarget - yCurrent;
 
 	float deltaV = sqrt(deltaX*deltaX + deltaY*deltaY);
-
+	if (!deltaV)
+		deltaV = 0.2;
 	if (abs(deltaX) > TOLERANCE)
 	{
-		float powerX = motorPower((float) VELOCITY * deltaX / deltaV);
+		powerX = motorPower(VELOCITY * deltaX / deltaV);
 		motor[motorX] = powerX;
 	}
 	if (abs(deltaY) > TOLERANCE)
 	{
-		float powerY = motorPower((float) VELOCITY * deltaY / deltaV);
+		powerY = motorPower(VELOCITY * deltaY / deltaV);
 		motor[motorY] = powerY;
 	}
 
-	while ((!(abs(deltaX) < TOLERANCE && abs(deltaY) < TOLERANCE))&&(powerX!=0&&powerY!=0)
+	while ((!(abs(deltaX) < TOLERANCE && abs(deltaY) < TOLERANCE))&&(powerX!=0||powerY!=0))
 	{
 		wait1Msec(20);
 		xCurrent = nMotorEncoder[motorX] * ENC_TO_MM;
@@ -55,11 +54,16 @@ void moveXY (float xTarget_local, float yTarget_local)
 		deltaX = xTarget - xCurrent;
 		deltaY = yTarget - yCurrent;
 
-		if (abs(deltaX) < TOLERANCE)
+		if (abs(deltaX) < TOLERANCE){
 			motor[motorX] = 0;
+			powerX=0;
+			}
 
-		if (abs(deltaY) < TOLERANCE)
+		if (abs(deltaY) < TOLERANCE){
 			motor[motorY] = 0;
+			powerY=0;
+			}
+
 	}
 	motor[motorX] = motor[motorY] = 0;
 }
@@ -90,12 +94,14 @@ void moveZ (float zTarget)
 
 void extrude (bool input)
 {
+	wait1Msec(40);
 	if (input){
-		setServoPosition(S4, 1, 50);// extrude on
+		setServoPosition(S4, 1, 100);// extrude on
 	}
 	else {
-		setServoPosition(S4, 1, 40);//extrude off
+		setServoPosition(S4, 1, 0);//extrude off
 	}
+	wait1Msec(40);
 }
 
 #endif

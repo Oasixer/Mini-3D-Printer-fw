@@ -35,13 +35,13 @@ void zero()
 
 	// zero z-axis
 	motor[motorZ1] = motor[motorZ2] = powerZ;
-	while(SensorValue[TOUCH_Z] == 0) {wait1Msec(15)}
+	while(SensorValue[TOUCH_Z] == 0) {wait1Msec(15);}
 	motor[motorZ1] = motor[motorZ2] = 0;
 	nMotorEncoder[motorZ1] = 0;
 	nMotorEncoder[motorZ2] = 0;
 
+	moveZ(8);
 	moveXY(5, 20);
-	moveZ(3);
 
 	// zero y-axis at quarter speed
 	motor[motorY] = powerY / 4.0;
@@ -61,9 +61,10 @@ void zero()
 	wait1Msec(50);
 	moveZ(5);
 	wait1Msec(50);
-	moveXY(31, 52);
+	//moveXY(31, 52);
+	moveXY(31,28);
 	wait1Msec(50);
-	moveZ(0);
+	moveZ(3.36);
 	nMotorEncoder[motorX] = 0;
 	nMotorEncoder[motorY] = 0;
 	nMotorEncoder[motorZ1] = 0;
@@ -74,6 +75,7 @@ void zero()
 
 int scanColour()
 {
+
 	int values[3]; //store 3 colour values
 	do{ //loop until all 3 colour values are the same (aka make sure you dont read the wrong colour)
 		values[0]=(int)SensorValue[S1];
@@ -83,7 +85,17 @@ int scanColour()
 		values[2]=(int)SensorValue[S1];
 		wait1Msec(50);
 	} while (!(values[0]==values[1]&&values[0]==values[2]));
-	return values[2];
+	int colorInt=values[2];
+	wait1Msec(50);
+	if (colorInt==(int)colorWhite)
+		return 0;
+	else if (colorInt==(int)colorYellow)
+		return 1;
+	else if (colorInt==(int)colorRed)
+		return 2;
+	else if (colorInt==(int)colorBlack)
+		return 3;
+	return 0;
 }
 
 void scanPaper(){
@@ -92,12 +104,13 @@ void scanPaper(){
 	wait1Msec(50);
 	SensorMode[S1]=modeEV3Color_Color;
 	wait1Msec(50);
-	for (int x = 0; x < 5; x++){
-		for(int y = 0; y < 5; y++){
+	moveZ(3);
+	for (int xLoc = 0; xLoc < 5; xLoc++){
+		for(int yLoc = 0; yLoc < 5; yLoc++){
 			step+=1;//DEBUG
-			moveXY((float)x*15.0-2.5,(float)y*15.0+37.5);
+			moveXY((float)xLoc*15.0-4.5,(float)yLoc*15.0+37.5);
 			step+=1;//DEBUG
-			cubes[x][y]=scanColour();
+			cubes[xLoc][yLoc]=scanColour();
 		}
 	}
 

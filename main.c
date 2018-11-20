@@ -10,10 +10,15 @@ task main ()
 {
 	configureI2C(S4);
 	extrude(false);
+	wait1Msec(100);
+	extrude(true);
+	wait1Msec(3000);
+	extrude(false);
 	//waitForButtonPress();
 	zero();
-	wait1Msec(3000);
+	wait1Msec(1000);
 	scanPaper();
-	runPrint();
+	zero();
+  runPrint();
 	//printSquare(0,0);
 }

@@ -23,5 +23,9 @@ task main()
 		//extrude(true);
 		moveXY(0,0);
 		wait1Msec(1000);
+
+		//extrude(false);
+		moveXY(-20, 0);
+		wait1Msec(1000);
 	}
 }

@@ -3,7 +3,8 @@
 #ifndef GLOBAL_C
 #define GLOBAL_C
 
-const int VELOCITY = 30; //mm/s 200/8
+const float VELOCITY = 37; //mm/s 200/8
+
 const float TOLERANCE = 0.5;
 
 const tMotor motorY = motorA;
@@ -17,14 +18,13 @@ const tSensors TOUCH_Z = S2;
 const tSensors TOUCH_Y = S3;
 const tSensors I2C_PORT = S4;
 
-float deltaX, deltaY, xCurrent, yCurrent;
-float xTarget, yTarget;
+
 const float ENC_TO_MM=(float)24/360;
 const float Z_ENC_TO_MM = 0.0022222;
 const float MM_TO_ENC=15;
-
-const float LAYERHEIGHT=3;
-const float MAXLAYER=5*LAYERHEIGHT;
+const float CUBEHEIGHT=5;
+const float LAYERHEIGHT=0.7;
+const float MAXLAYER=5*(int)(CUBEHEIGHT/LAYERHEIGHT);
 
 float step;//for debugging
 int cubes[5][5];

@@ -5,6 +5,7 @@
 #define PRINT_C
 
 void printSquare (float leftx, float boty){
+	/*
 	moveXY(leftx,boty);
 	extrude(true);
 	wait1Msec(300);
@@ -29,51 +30,53 @@ void printSquare (float leftx, float boty){
 			moveXY(leftx+xTarget, boty+yTarget);
 		}
 	}
-  extrude(false);
-	/*
-	moveXY(leftx,boty);
-	moveXY(leftx+14,boty+0);
-	moveXY(leftx+14,boty+14);
-	moveXY(leftx,boty+14);
-	moveXY(leftx,boty+1);
-	moveXY(leftx+13,boty+1);
-	moveXY(leftx+13,boty+13);
-	moveXY(leftx+1,boty+13);
-	moveXY(leftx+1,boty+2);
-	moveXY(leftx+12,boty+2);
-	moveXY(leftx+12,boty+3);
-	moveXY(leftx+2,boty+3);
-	moveXY(leftx+2,boty+4);
-	moveXY(leftx+12,boty+4);
-	moveXY(leftx+12,boty+5);
-	moveXY(leftx+2,boty+5);
-	moveXY(leftx+2,boty+6);
-	moveXY(leftx+12,boty+6);
-	moveXY(leftx+12,boty+7);
-	moveXY(leftx+2,boty+7);
-	moveXY(leftx+2,boty+8);
-	moveXY(leftx+12,boty+8);
-	moveXY(leftx+12,boty+9);
-	moveXY(leftx+2,boty+9);
-	moveXY(leftx+2,boty+10);
-	moveXY(leftx+12,boty+10);
-	moveXY(leftx+12,boty+11);
-	moveXY(leftx+2,boty+11);
-	moveXY(leftx+2,boty+12);
-	moveXY(leftx+12,boty+12);
-	extrude(false);
 	*/
+
+	moveXY(leftx,boty);
+	extrude(true);
+  wait1Msec(1100);
+	moveXY(leftx+14,boty);
+	moveXY(leftx+14,boty+13);
+	moveXY(leftx,boty+13);
+	moveXY(leftx,boty+0.35);
+	moveXY(leftx+13,boty+0.35);
+	moveXY(leftx+13,boty+12);
+	moveXY(leftx+1,boty+12);
+	moveXY(leftx+1,boty+1.15);
+	moveXY(leftx+12,boty+1.15);
+	moveXY(leftx+12,boty+2);
+	moveXY(leftx+2,boty+2);
+	moveXY(leftx+2,boty+3);
+	moveXY(leftx+12,boty+3);
+	moveXY(leftx+12,boty+4);
+	moveXY(leftx+2,boty+4);
+	moveXY(leftx+2,boty+5);
+	moveXY(leftx+12,boty+5);
+	moveXY(leftx+12,boty+6);
+	moveXY(leftx+2,boty+6);
+	moveXY(leftx+2,boty+7);
+	moveXY(leftx+12,boty+7);
+	moveXY(leftx+12,boty+8);
+	moveXY(leftx+2,boty+8);
+	moveXY(leftx+2,boty+9);
+	moveXY(leftx+12,boty+9);
+	moveXY(leftx+12,boty+10);
+	moveXY(leftx+2,boty+10);
+	moveXY(leftx+2,boty+11);
+	extrude(false);
+	moveXY(leftx+12,boty+11);
+
 }
 
 void runPrint (){
 	for (int layer = 1; layer < MAXLAYER; layer++){
+		moveZ(layer*LAYERHEIGHT);
 		for (int x = 0; x < 5; x++){
 			for (int y = 0; y < 5; y++){
-				if (cubes[x][y] >= layer)
+				if ((float)(cubes[x][y])*(CUBEHEIGHT/LAYERHEIGHT) >= layer)
 					printSquare((float)x*15.0, (float)y*15.0);
 			}
 		}
-		moveZ(layer*LAYERHEIGHT);
 	}
 }
 
