@@ -10,3 +10,13 @@ Built by Zachariah, Kaelan, Lyndon and Daddy Parth
 - motor power function
 - fix homing(zeroing)
 - test cases list
+
+#Test Case List
+- homing  --check
+- build height --check
+- servo /done
+- colour scanning /done
+- colour build(main) /done
+- colour sensitivity?
+
+
