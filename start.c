@@ -15,6 +15,9 @@ void zero()
 	float powerX = -50;
 	float powerY = -50;
 	float powerZ = -100;
+	float deltaEnc = 0;
+	float encVal1 = 0;
+	float encVal2 = 0;
 
 	// zero x-axis
 	motor[motorX] = 7;
@@ -23,7 +26,12 @@ void zero()
 	wait1Msec(2000);
 	motor[motorZ1] = motor[motorZ2] = 0;
 	time1[T1]=0;
-	while (time1[T1]<25000 && !getButtonPress(buttonAny)){}
+	while (/*time1[T1]<25000 */ deltaEnc != 0 && !getButtonPress(buttonAny)){
+		encVal1 = nMotorEncoder[motorX];
+		wait1Msec(100);
+		encVal2 = nMotorEncoder[motorX];
+		deltaEnc = encVal2 - encVal1;
+	}
 	motor[motorX] = 0;
 	nMotorEncoder(motorX)=0;
 
