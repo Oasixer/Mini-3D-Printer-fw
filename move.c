@@ -25,10 +25,12 @@ float motorPower (float velocity)
 void moveXY (float xTarget, float yTarget)
 {
 	float powerX = 0, powerY = 0;
-	xTarget= -xTarget;
-	float xCurrent = nMotorEncoder[motorX]*ENC_TO_MM;
-  float yCurrent = nMotorEncoder[motorY]*ENC_TO_MM;
+	
+	float xCurrent = nMotorEncoder[motorX] * ENC_TO_MM;
+	float yCurrent = nMotorEncoder[motorY] * ENC_TO_MM;
 
+	// invert x value to match hardware setup
+	xTarget = -xTarget;
 	float deltaX = xTarget - xCurrent;
 	float deltaY = yTarget - yCurrent;
 
@@ -70,8 +72,8 @@ void moveXY (float xTarget, float yTarget)
 
 void moveZ (float zTarget)
 {
-	float zCurrent1 = nMotorEncoder[motorZ1]*Z_ENC_TO_MM;
-	float zCurrent2 = nMotorEncoder[motorZ2]*Z_ENC_TO_MM;
+	float zCurrent1 = nMotorEncoder[motorZ1] * Z_ENC_TO_MM;
+	float zCurrent2 = nMotorEncoder[motorZ2] * Z_ENC_TO_MM;
 
 	int direction = 1;
 	if (zTarget < zCurrent1)
@@ -80,8 +82,8 @@ void moveZ (float zTarget)
 	motor[motorZ1] = motor[motorZ2] = 100*direction;
 	while(!(abs(zTarget-zCurrent1) < TOLERANCE && abs(zTarget-zCurrent2) < TOLERANCE))
 	{
-		zCurrent1 = nMotorEncoder[motorZ1]*Z_ENC_TO_MM;
-		zCurrent2 = nMotorEncoder[motorZ2]*Z_ENC_TO_MM;
+		zCurrent1 = nMotorEncoder[motorZ1] * Z_ENC_TO_MM;
+		zCurrent2 = nMotorEncoder[motorZ2] * Z_ENC_TO_MM;
 
 		if (abs(zCurrent1-zTarget) < TOLERANCE)
 			motor[motorZ1] = 0;
