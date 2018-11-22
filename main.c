@@ -19,6 +19,6 @@ task main ()
 	wait1Msec(1000);
 	scanPaper();
 	zero();
-  runPrint();
+	runPrint();
 	//printSquare(0,0);
 }
