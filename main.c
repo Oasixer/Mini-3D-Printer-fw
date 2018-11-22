@@ -2,6 +2,7 @@
 #include "global.c"
 #include "move.c"
 #include "start.c"
+#include "end.c"
 #include "print.c"
 #include "buttons.c"
 #include "math.c"
@@ -21,4 +22,5 @@ task main ()
 	zero();
 	runPrint();
 	//printSquare(0,0);
+	endProcedure();
 }
