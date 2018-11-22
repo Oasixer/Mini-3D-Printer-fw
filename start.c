@@ -26,9 +26,9 @@ void zero()
 	wait1Msec(2000);
 	motor[motorZ1] = motor[motorZ2] = 0;
 	time1[T1]=0;
-	while (/*time1[T1]<25000 */ deltaEnc != 0 && !getButtonPress(buttonAny)){
+	while (time1[T1]<25000 && deltaEnc != 0 && !getButtonPress(buttonAny)){
 		encVal1 = nMotorEncoder[motorX];
-		wait1Msec(100);
+		wait1Msec(50);
 		encVal2 = nMotorEncoder[motorX];
 		deltaEnc = encVal2 - encVal1;
 	}
@@ -101,8 +101,12 @@ int scanColour()
 		return 1;
 	else if (colorInt==(int)colorRed)
 		return 2;
-	else if (colorInt==(int)colorBlack)
+	else if (colorInt==(int)colorGreen)
 		return 3;
+	else if (colorInt==(int)colorBlue)
+		return 4;
+	else if (colorInt==(int)colorBlack)
+		return 5;
 	return 0;
 }
 
@@ -115,38 +119,10 @@ void scanPaper(){
 	moveZ(3);
 	for (int xLoc = 0; xLoc < 5; xLoc++){
 		for(int yLoc = 0; yLoc < 5; yLoc++){
-			step+=1;//DEBUG
 			moveXY((float)xLoc*15.0-4.5,(float)yLoc*15.0+37.5);
-			step+=1;//DEBUG
 			cubes[xLoc][yLoc]=scanColour();
 		}
 	}
 
-	//FOR TESTING ONLY
-	/*
-	cubes[0][0]=0;
-	cubes[0][2]=0;
-	cubes[0][3]=0;
-	cubes[0][4]=0;
-	cubes[1][0]=0;
-	cubes[1][1]=0;
-	cubes[1][2]=0;
-	cubes[1][3]=0;
-	cubes[1][4]=0;
-	cubes[2][0]=0;
-	cubes[2][1]=0;
-	cubes[2][2]=0;
-	cubes[2][3]=0;
-	cubes[2][4]=0;
-	cubes[3][0]=0;
-	cubes[3][1]=0;
-	cubes[3][2]=0;
-	cubes[3][3]=0;
-	cubes[3][4]=0;
-	cubes[4][1]=0;
-	cubes[4][2]=0;
-	cubes[4][3]=0;
-	cubes[4][4]=0;
-	*/
 }
 #endif
