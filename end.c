@@ -14,13 +14,13 @@ void endProcedure()
 {
 	moveZ(Z_MAX);
 
-	notifyUser(784, 30, ledOrangePulse);
+	notifyUser(440, 30, ledOrangePulse);
 
-	notifyUser(784, 30, ledRedFlash);
+	notifyUser(440, 30, ledRedFlash);
 
 	wait10Msec(COOL_DOWN_TIME);
 
-	notifyUser(784, 30, ledGreenFlash);
+	notifyUser(440, 30, ledGreenFlash);
 
 	waitForEnter();
 }
