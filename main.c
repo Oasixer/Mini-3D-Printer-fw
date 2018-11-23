@@ -10,7 +10,7 @@
 task main ()
 {
 	configureI2C(S4);
-	//waitForButtonPress();
+	waitForButtonPress();
 	zero();
 	//manual zero adjustment
 
@@ -18,5 +18,5 @@ task main ()
 	scanPaper();
 	zero();
 	runPrint();
-	//endProcedure();
+	endProcedure();
 }
