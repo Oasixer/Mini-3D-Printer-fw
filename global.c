@@ -8,7 +8,7 @@ const float VELOCITY = 37; //mm/s 200/8
 const float TOLERANCE = 0.5;
 
 const float Z_MAX = 80;
-const long COOL_DOWN_TIME = 12000 //2 minutes -- might need to be changed
+const long COOL_DOWN_TIME = 12000; //2 minutes -- might need to be changed
 
 const tMotor motorY = motorA;
 const tMotor motorX = motorD;
