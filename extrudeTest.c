@@ -7,10 +7,10 @@ task main(){
 	//zero()
 	for (int i = 0; i < 10; i++)
 	{
-		for (int j = 0; j < -90; j++)
+		for (int j = 0; j > -90; j -= 3)
 		{
 			setServoPosition(S4, 1, j);
-			wait1Msec(50);
+			wait1Msec(100);
 		}
 	}
 	extrude(true);
