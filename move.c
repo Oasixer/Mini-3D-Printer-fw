@@ -99,10 +99,11 @@ void extrude (bool input)
 {
 	wait1Msec(40);
 	if (input){
-		setServoPosition(S4, 1, 100);// extrude on
+		// values are for Zach's servo
+		setServoPosition(S4, 1, 0);// extrude on
 	}
 	else {
-		setServoPosition(S4, 1, 0);//extrude off
+		setServoPosition(S4, 1, 90);//extrude off
 	}
 	wait1Msec(40);
 }
