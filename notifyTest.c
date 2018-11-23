@@ -4,15 +4,18 @@
 #include "buttons.c"
 #include "math.c"
 
-void notifyUser(int frequency, int timeSound, TEV3LEDPatterns led)
+void notifyUser(int frequency, int timeSound, TEV3LEDPatterns pattern)
 {
 	playTone(frequency, timeSound);
-	setLEDColor(led);
+	setLEDColor(pattern);
 }
 
 task main(){
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 3; i++)
 	{
-		notifyUser(784, 30, LED_GREEN_FLASH);
+		notifyUser(784, 30, ledGreenFlash);
+		wait1Msec(5000);
+		notifyUser(587, 30, ledRedPulse);
+		wait1Msec(5000);
 	}
 }
