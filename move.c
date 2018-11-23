@@ -80,7 +80,7 @@ void moveZ (float zTarget)
 		direction = -1;
 
 	motor[motorZ1] = 100 * direction;
-	motor[motorZ2] = 90 * direction;
+	motor[motorZ2] = 95 * direction;
 	while(!(abs(zTarget-zCurrent1) < TOLERANCE && abs(zTarget-zCurrent2) < TOLERANCE))
 	{
 		zCurrent1 = nMotorEncoder[motorZ1] * Z_ENC_TO_MM;

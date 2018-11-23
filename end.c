@@ -4,6 +4,9 @@
 #include "buttons.c"
 #include "math.c"
 
+#ifndef END_C
+#define END_C
+
 void notifyUser(int frequency, int timeSound, TEV3LEDPatterns led)
 {
 	playTone(frequency, timeSound);
@@ -24,3 +27,5 @@ void endProcedure()
 
 	waitForEnter();
 }
+
+#endif
