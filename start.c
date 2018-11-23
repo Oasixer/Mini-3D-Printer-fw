@@ -155,7 +155,7 @@ int scanColour()
 	} while (!(values[0]==values[1]&&values[0]==values[2]));
 	int colorInt=values[2];
 	wait1Msec(50);
-	if (colorInt==(int)colorWhite)
+	if (colorInt==(int)colorWhite || colorInt==(int)colorBlue)
 		return 0;
 	else if (colorInt==(int)colorYellow)
 		return 1;
@@ -163,10 +163,8 @@ int scanColour()
 		return 2;
 	else if (colorInt==(int)colorGreen)
 		return 3;
-	else if (colorInt==(int)colorBlue)
-		return 4;
 	else if (colorInt==(int)colorBlack)
-		return 5;
+		return 4;
 	return 0;
 }
 
