@@ -25,7 +25,7 @@ float motorPower (float velocity)
 void moveXY (float xTarget, float yTarget)
 {
 	float powerX = 0, powerY = 0;
-	
+
 	float xCurrent = nMotorEncoder[motorX] * ENC_TO_MM;
 	float yCurrent = nMotorEncoder[motorY] * ENC_TO_MM;
 
@@ -79,7 +79,8 @@ void moveZ (float zTarget)
 	if (zTarget < zCurrent1)
 		direction = -1;
 
-	motor[motorZ1] = motor[motorZ2] = 100*direction;
+	motor[motorZ1] = 100 * direction;
+	motor[motorZ2] = 90 * direction;
 	while(!(abs(zTarget-zCurrent1) < TOLERANCE && abs(zTarget-zCurrent2) < TOLERANCE))
 	{
 		zCurrent1 = nMotorEncoder[motorZ1] * Z_ENC_TO_MM;
