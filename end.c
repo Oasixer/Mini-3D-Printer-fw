@@ -16,6 +16,8 @@ void endProcedure()
 
 	notifyUser(784, 30, ledOrangePulse);
 
+	notifyUser(784, 30, ledRedFlash);
+
 	wait10Msec(COOL_DOWN_TIME);
 
 	notifyUser(784, 30, ledGreenFlash);
