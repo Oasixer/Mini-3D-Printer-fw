@@ -76,7 +76,7 @@ void zero()
 	wait1Msec(50);
 	moveZ(5);
 	wait1Msec(50);
-	moveXY(14, 53);
+	moveXY(14, 50);
 	//moveXY(31,28);
 	wait1Msec(50);
 	moveZ(3.25);
