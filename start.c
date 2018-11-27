@@ -29,7 +29,7 @@ void zero()
 	// zero x-axis
 	motor[motorX] = 12;
 	motor[motorZ1] = 100;
-	motor[motorZ2] = 100;
+	motor[motorZ2] = 95;
 	wait1Msec(2000);
 	motor[motorZ1] = motor[motorZ2] = 0;
 	time1[T1]=0;
@@ -49,7 +49,8 @@ void zero()
 	nMotorEncoder[motorY] = 0;
 
 	// zero z-axis
-	motor[motorZ1] = motor[motorZ2] = powerZ;
+	motor[motorZ1] = powerZ;
+	motor[motorZ2] = -95;
 	while(SensorValue[TOUCH_Z] == 0) {wait1Msec(15);}
 	motor[motorZ1] = motor[motorZ2] = 0;
 	nMotorEncoder[motorZ1] = 0;
@@ -65,7 +66,8 @@ void zero()
 	nMotorEncoder[motorY] = 0;
 
 	// zero z-axis at half
-	motor[motorZ1] = motor[motorZ2] = powerZ / 2;
+	motor[motorZ1] = powerZ / 2;
+	motor[motorZ2] = -47;
 	while(SensorValue[TOUCH_Z] == 0) {}
 	motor[motorZ1] = motor[motorZ2] = 0;
 	wait1Msec(50);
@@ -74,12 +76,12 @@ void zero()
 
 
 	wait1Msec(50);
-	moveZ(5);
+	moveZ(7);
 	wait1Msec(50);
-	moveXY(14, 50);
+	moveXY(16, 51);
 	//moveXY(31,28);
 	wait1Msec(50);
-	moveZ(3.25);
+	moveZ(3.7);
 	bool xyMode=true;
 	bool quit=false;
 	time1[T1]=0;
@@ -161,10 +163,10 @@ int scanColour()
 		return 1;
 	else if (colorInt==(int)colorRed||colorInt==(int)colorBrown)
 		return 2;
-	else if (colorInt==(int)colorGreen)
-		return 3;
+	//else if (colorInt==(int)colorGreen)
+		//return 3;
 	else if (colorInt==(int)colorBlack)
-		return 4;
+		return 3;
 	return 0;
 }
 

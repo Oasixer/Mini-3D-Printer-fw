@@ -3,7 +3,7 @@
 #ifndef GLOBAL_C
 #define GLOBAL_C
 
-const float VELOCITY = 30; //mm/s 200/8
+const float VELOCITY = 33; //mm/s 200/8
 
 const float TOLERANCE = 0.5;
 

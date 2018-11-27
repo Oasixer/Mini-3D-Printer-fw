@@ -34,7 +34,7 @@ void printSquare (float leftx, float boty){
 
 	moveXY(leftx,boty);
 	extrude(true);
-  wait1Msec(1100);
+  wait1Msec(900);
 	moveXY(leftx+14,boty);
 	moveXY(leftx+14,boty+13);
 	moveXY(leftx,boty+13);
