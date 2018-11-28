@@ -1,22 +1,22 @@
-// by Zachariah, Kaelan, Lyndon, Daddy Parth
+/*
+Group 414
+3D Printer
+Main file, main task
+*/
 #include "global.c"
 #include "move.c"
 #include "start.c"
 #include "end.c"
 #include "print.c"
-#include "buttons.c"
-#include "math.c"
+#include "misc.c"
 
 task main ()
 {
 	configureI2C(S4);
-	//waitForEnter();
+	waitForEnter();
 	zero();
-	//manual zero adjustment
-	//moveZ(45);
-	//wait1Msec(1000);
   scanPaper();
-	zero();
+	zero(); //rezero before printing: corrects minor drifting
 	runPrint();
 	endProcedure();
 }

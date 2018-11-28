@@ -1,10 +1,15 @@
-// by Zachariah, Kaelan, Lyndon, Daddy Parth
+/*
+Group 414
+3D Printer
+Test for notifying user of finished print
+*/
+
 #include "global.c"
 #include "move.c"
 #include "start.c"
 #include "end.c"
 #include "buttons.c"
-#include "math.c"
+#include "misc.c"
 
 task main(){
 	zero();

@@ -1,10 +1,7 @@
 /*
-
 Group 414
 3D Printer
-Scan Test
-Nov 16, 2018
-
+moveXY Test
 */
 
 #include "start.c"
@@ -14,17 +11,18 @@ task main()
 {
 	nMotorEncoder[motorX] = 0;
 	nMotorEncoder[motorY] = 0;
-	for (int count = 0; count < 10; count++)
+  //move around and test the extruder
+	for (int count = 0; count < 10; count++) //run 10 times
 	{
-		//extrude(false);
+		extrude(false);
 		moveXY(20, 30);
 		wait1Msec(1000);
 
-		//extrude(true);
+		extrude(true);
 		moveXY(0,0);
 		wait1Msec(1000);
 
-		//extrude(false);
+		extrude(false);
 		moveXY(-20, 0);
 		wait1Msec(1000);
 	}

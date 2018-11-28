@@ -1,14 +1,11 @@
 /*
-
 Group 414
 3D Printer
 Zero Test
-Nov 16, 2018
-
 */
-
 #include "start.c"
 #include "move.c"
+#include "misc.c"
 
 task main()
 {
