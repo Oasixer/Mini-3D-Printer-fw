@@ -14,9 +14,9 @@ task main ()
 {
 	configureI2C(S4);
 	waitForEnter();
-	zero();
+  zero();
   scanPaper();
   zero(); //rezero before printing: corrects minor drifting
-	runPrint();
+  runPrint();
 	endProcedure();
 }
