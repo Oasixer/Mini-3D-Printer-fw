@@ -12,11 +12,11 @@ Main file, main task
 
 task main ()
 {
-	configureI2C(S4);
-	waitForEnter();
+  configureI2C(S4);
+  waitForEnter();
   zero();
   scanPaper();
   zero(); //rezero before printing: corrects minor drifting
   runPrint();
-	endProcedure();
+  endProcedure();
 }
