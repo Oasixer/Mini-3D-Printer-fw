@@ -16,7 +16,6 @@ task main ()
   waitForEnter();
   zero();
   scanPaper();
-  zero(); //rezero before printing: corrects minor drifting
   runPrint();
   endProcedure();
 }
