@@ -4,12 +4,12 @@ Laser cut wood parts were used for the frame.
 
 Total budget: $40
 # Tests
-[ ] xy zeroing accuracy
+[x] xy zeroing accuracy
 
-[ ] homing
+[x] homing
 
-[ ] z accuracy
+[x] z accuracy
 
-[ ] servo
+[x] servo clicks button
 
-[ ] build stuff
+[x] build stuff
