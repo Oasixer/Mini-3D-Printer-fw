@@ -3,6 +3,9 @@ A project in which a tiny 3d printer was constructed around a dirt cheap 3d pen,
 Laser cut wood parts were used for the frame.
 
 Total budget: $40
+
+![img](file:///home/k/Personal-Website/static/images/portfolio/printer.jpg)
+
 # Tests
 [x] xy zeroing accuracy
 
