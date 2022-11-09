@@ -1,23 +1,11 @@
-# GENE121-Final-Project
-3D Printer in RobotC created for GENE final project
-Built by Zachariah, Kaelan, Lyndon and Parth
-#
-#
-# Task List
-- demo day checklist
-- tasklist
-- fake prototypes
-- motor power function
-- fix homing(zeroing)
-- test cases list
-#
-#
-# Test Case List
-- homing  --check
-- build height --check
-- servo /done
-- colour scanning /done
-- colour build(main) /done
-- colour sensitivity?
+# Ultralow budget 3D printer
+A project in which a tiny 3d printer was constructed around a dirt cheap 3d pen, which shockingly managed to actually print stuff.
+Laser cut wood parts were used for the frame.
 
-
+Total budget: $40
+# Tests
+[ ] xy zeroing accuracy
+[ ] homing
+[ ] z accuracy
+[ ] servo
+[ ] build stuff
