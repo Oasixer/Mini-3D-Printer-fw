@@ -4,7 +4,7 @@ Laser cut wood parts were used for the frame.
 
 Total budget: $40
 
-![img](file:///home/k/Personal-Website/static/images/portfolio/printer.jpg)
+![img](https://kaelan.xyz/images/portfolio/printer.jpg)
 
 # Tests
 [x] xy zeroing accuracy
